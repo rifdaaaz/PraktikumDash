@@ -59,6 +59,10 @@ public class WorldBuilder {
     public Question[] getQuestionList() {
         return questionList;
     }
+    //Another getter
+    public Question getQuestion(int i){
+        return questionList[i];
+    }
     //static inner class builder
     public static class Builder{
         private Asisten asisten1, asisten2;
@@ -102,5 +106,6 @@ public class WorldBuilder {
             return new WorldBuilder(this);
         }
     }
+
 
 }

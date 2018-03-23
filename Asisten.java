@@ -15,7 +15,7 @@ public class Asisten extends Mahasiswa{
 		logo +=count-1; 
 	}
 
-	private void setTarget(Praktikan target){
+	public void setTarget(Praktikan target){
 		this.target = new Praktikan(target);
 	}
 
@@ -48,9 +48,27 @@ public class Asisten extends Mahasiswa{
 		}
 	}
 
+	public void jawab(){
+		Scanner s = new Scanner(System.in);
+		String ans;
+		Question q = target.getQuestion();
+		do{
+			System.out.println(q.getQuestion());
+			ans = s.next();
+			if(!ans.equals(q.getAnswer())){
+				System.out.println("Masih Salah");
+				life--;
+				if(life<=0){
+					System.out.println("Asisten " + nama + " pingsan w -_-'");
+				}
+			}
+		}while(!ans.equals(q.getAnswer()) && life > 0);
+	}
+
 	public void display(){
 		if(isSampai()){
 			System.out.println("Asisten " + nama + "("+logo+") sampai ke Praktikan " + target.getNama());
+			jawab();
 		}else{
 			System.out.println("Asisten " + nama + " berjalan ke " + pos);
 		}

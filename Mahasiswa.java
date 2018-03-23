@@ -1,33 +1,35 @@
 public abstract class Mahasiswa extends Thread {
-	private final Position pos;
-	private final String name;
+	protected Position pos;
+	protected String nama;
 
-	private Mahasiswa(final Point _pos, final String _name){
-		this.name = _name;
+	public Mahasiswa(String _nama, Position _pos){
+		this.nama = _nama;
 		this.pos = _pos;
 	}
 
 	public Position getPos() {
-		return pos;
+		return this.pos;
 	}
-	public String getName() {
-		return name;
+	public String getNama() {
+		return this.nama;
 	}
 
-	public static class Builder() {
-		private final Point pos;
+	/* public static class Builder {
+		private final Position pos;
 		private final String nama;
 
-		public Builder(final Point _pos){
-		this.pos = _pos;
+		public Position Builder(final Position _pos){
+			this.pos = _pos;
+			return this;
 		}
 
-		public Builder(final String _name){
-		this.name = _name;
+		public String Builder(final String _nama){
+			this.nama = _nama;
+			return this;
 		}
 
 		public Mahasiswa create() {
-			return new Mahasiswa(pos,name);
+			return new Mahasiswa(pos,nama);
 		}
-	}
+	} */
 }

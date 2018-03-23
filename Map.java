@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Map {
     private char[][] map = new char[15][15];
 
@@ -47,14 +49,23 @@ public class Map {
     }
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Question q[] = new Question[3];
+		q[0] = new Question("a1","q1");
+		q[1] = new Question("a2","q2");
+		q[2] = new Question("a3","q3");
+        
+
         Map map = new Map();
         Position letakSandro = new Position(3,5);
         Asisten sandro = new Asisten("Sandro", letakSandro);
         map.placeAsisten(sandro);
 
-        Position letakAthur = new Position(12,12);
+        Position letakAthur = new Position(6,6);
         Praktikan athur = new Praktikan("Athur", letakAthur);
         map.placePraktikan(athur);
+        athur.addQuestion(q);
 
         sandro.setTarget(athur);
         while(!sandro.isSampai()){
@@ -71,6 +82,7 @@ public class Map {
                 Thread.currentThread().interrupt();
             }
 		}
+        sandro.jawab();
     }
 
 }

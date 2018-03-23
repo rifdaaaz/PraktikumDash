@@ -86,11 +86,15 @@ public class Asisten extends Mahasiswa{
 		Scanner s = new Scanner(System.in);
 		String ans;
 		Question q = target.getQuestion();
+		if(q==null){
+			System.out.println("KOSONG");
+		}
 		do{
-			System.out.println(q.getQuestion());
+			System.out.println("Pertanyaan : " + q.getQuestion());
+			System.out.print("Jawabanmu : ");
 			ans = s.next();
 			if(!ans.equals(q.getAnswer())){
-				System.out.println("Masih Salah");
+				System.out.println("Jawabanmu masih salah :(");
 				life--;
 				if(life<=0){
 					System.out.println("Asisten " + nama + " pingsan w -_-'");
@@ -121,6 +125,10 @@ public class Asisten extends Mahasiswa{
 										 .pos(new Position(0, 0)).build();
 		p.addQuestion(q);
 		a.setTarget(p);
+
+		Question q1 = p.getQuestion();
+		System.out.println(q1.getQuestion());
+		System.out.println("masuk");
 
 		while(!a.isSampai()){
 			a.move();

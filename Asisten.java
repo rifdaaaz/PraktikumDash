@@ -2,14 +2,19 @@
 import java.util.*;
 
 public class Asisten extends Mahasiswa{
+	private static int count = 0;
 	private Praktikan target;
 	private int life = 2;
+	private char logo = 'A';
 
 	public Asisten(String nama, Position pos){
 		super(nama, pos);
 		target = null;
 		life = 2;
+		count++;
+		logo +=count; 
 	}
+
 	private void setTarget(Praktikan target){
 		this.target = new Praktikan(target);
 	}
@@ -19,6 +24,10 @@ public class Asisten extends Mahasiswa{
 			return pos.equals(target.getPos());
 		}
 		return false;
+	}
+
+	public char getLogo(){
+		return logo;
 	}
 
 	public void move(){
@@ -39,27 +48,9 @@ public class Asisten extends Mahasiswa{
 		}
 	}
 
-	public void jawab(){
-		Scanner s = new Scanner(System.in);
-		String ans;
-		Question q = target.getQuestion();
-		do{
-			System.out.println(q.getQuestion());
-			ans = s.next();
-			if(!ans.equals(q.getAnswer())){
-				System.out.println("Masih Salah");
-				life--;
-				if(life<=0){
-					System.out.println("Pingsan w -_-'");
-				}
-			}
-		}while(!ans.equals(q.getAnswer()) && life > 0);
-	}
-
 	public void display(){
 		if(isSampai()){
 			System.out.println("Asisten " + nama + " sampai ke Praktikan " + target.getNama());
-			jawab();
 		}else{
 			System.out.println("Asisten " + nama + " berjalan ke " + pos);
 		}
@@ -67,9 +58,9 @@ public class Asisten extends Mahasiswa{
 
 	public static void main(String[] args) {
 		Queue<Question> q = new LinkedList<>();
-		q.add(new Question("q1","a1"));
-		q.add(new Question("q2","a2"));
-		q.add(new Question("q3","a3"));
+		q.add(new Question("a1","q1"));
+		q.add(new Question("a2","q2"));
+		q.add(new Question("a3","q3"));
 
 		Praktikan p = new Praktikan("Sandro", new Position(5,5),q);
 		Asisten a = new Asisten("SandroAssist", new Position(0,0));

@@ -3,18 +3,22 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Praktikan extends Mahasiswa {
+  private static int count = 0;
+  private char logo = '1';
   private Queue<Question> q = new LinkedList<>();
 
-  public Praktikan(String nama, Position pos) {
+  public Praktikan(String nama, Position pos, Queue<Question> q) {
     super(nama, pos);
-    this.q = null;
+    this.q = q;
+    count++;
+		logo +=count; 
   }
 
   public Praktikan(Praktikan p) {
-    this(p.nama, p.pos);
+    this(p.nama, p.pos, p.q);
+    count++;
+		logo +=count; 
   }
-
-  public void setQ()
 
   // Builder Praktikan
 
@@ -44,6 +48,9 @@ public class Praktikan extends Mahasiswa {
 
   } */
 
+  public char getLogo(){
+		return logo;
+	}
 
   public void addQuestion(Question[] question) {
     Random rand = new Random();

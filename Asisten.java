@@ -7,16 +7,50 @@ public class Asisten extends Mahasiswa{
 	private int life = 2;
 	private char logo = 'A';
 
-	public Asisten(String nama, Position pos){
+/* 	public Asisten(String nama, Position pos){
 		super(nama, pos);
 		target = null;
 		life = 2;
 		count++;
 		logo +=count-1; 
+	} */
+
+	//konstruktor pake builder
+	private Asisten(Builder builder){
+		this.life = builder.life;
+		this.logo = builder.logo;
+		this.nama = builder.nama;
+		this.pos = builder.pos;
+		this.target = null;
+		this.life = 2;
+		count++;
+		this.logo += count - 1;
+	}
+
+	public static class Builder {
+		private Praktikan target;
+		private int life = 2;
+		private char logo = 'A';
+		private String nama;
+		private Position pos;
+
+		public Builder(){}
+		public Builder nama(String nama){
+			this.nama = nama;
+			return this;
+		}
+		public Builder pos(Position pos){
+			this.pos = pos;
+			return this;
+		}
+		public Asisten build(){
+			return new Asisten(this);
+		}
+
 	}
 
 	public void setTarget(Praktikan target){
-		this.target = new Praktikan(target);
+		this.target = target;
 	}
 
 	public boolean isSampai(){
@@ -63,6 +97,7 @@ public class Asisten extends Mahasiswa{
 				}
 			}
 		}while(!ans.equals(q.getAnswer()) && life > 0);
+		s.close();
 	}
 
 	public void display(){
@@ -80,8 +115,10 @@ public class Asisten extends Mahasiswa{
 		q[1] = new Question("a2","q2");
 		q[2] = new Question("a3","q3");
 
-		Praktikan p = new Praktikan("Sandro", new Position(5,5));
-		Asisten a = new Asisten("SandroAssist", new Position(0,0));
+		Praktikan p = new Praktikan.Builder().nama("Sandro")
+											 .pos(new Position(5,5)).create();
+		Asisten a = new Asisten.Builder().nama("SandroAssist")
+										 .pos(new Position(0, 0)).build();
 		p.addQuestion(q);
 		a.setTarget(p);
 

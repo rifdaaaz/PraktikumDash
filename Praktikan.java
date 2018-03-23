@@ -7,43 +7,36 @@ public class Praktikan extends Mahasiswa {
   private char logo = '1';
   private Queue<Question> q = new LinkedList<>();
 
-  public Praktikan(String nama, Position pos) {
-    super(nama, pos);
-    count++;
-		logo +=count-1; 
-  }
 
-  public Praktikan(Praktikan p) {
-    this(p.nama, p.pos);
+  private Praktikan(Builder builder) {
+    this.pos = builder.pos;
+    this.nama = builder.nama;
+    count++;
+    logo += count - 1;
   }
 
   // Builder Praktikan
+  
+  public static class Builder {
+    private Position pos;
+    private String nama;
 
-  /* public static class Builder {
-    private final Position pos;
-		private final String nama;
-    private final Queue<Question> q;
-
-    public Position Builder(final Position _pos) {
+    public Builder pos(Position _pos) {
       this.pos = _pos;
       return this;
     }
 
-    public String Builder(final String _nama) {
-			this.nama = _nama;
-			return this;
-		}
-
-    public Queue<Question> Builder(final Queue<Question> _q) {
-      this.q = _q;
+    public Builder nama(String _nama) {
+      this.nama = _nama;
       return this;
     }
 
+
     public Praktikan create() {
-      return new Praktikan(pos, nama, q);
+      return new Praktikan(this);
     }
 
-  } */
+  }
 
   public char getLogo(){
 		return logo;

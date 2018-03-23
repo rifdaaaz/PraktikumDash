@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class IOHandler {
     
+    public static File stringToFile (String filename){
+        return (new File(filename));
+    }
+    
     public static ArrayList<Question> addQuestionFromText (File fileIn){
         Scanner inFile = null;
         try{
@@ -62,26 +66,4 @@ public class IOHandler {
         }
         return arrAsisten;
     }
-
-    public static void main (String[] args){
-        File file = new File("Question.txt");
-        ArrayList<Question> listQuestion = IOHandler.addQuestionFromText(file);
-        for (int i = 0; i<listQuestion.size();i++){
-            System.out.println("\nSoal "+(i+1)+": "+listQuestion.get(i).getQuestion()+"\nJawaban :"+listQuestion.get(i).getAnswer());
-        }
-        File filea = new File("asisten.txt");
-        ArrayList<Asisten> listAsisten = IOHandler.addAsistenFromText(filea);
-        for (int i=0; i<listAsisten.size();i++){
-            System.out.println("\nAsisten "+(i+1)+": "+listAsisten.get(i).getNama()+"\nPosisi:"+listAsisten.get(i).getPos().toString());
-        }
-
-        File fileb = new File("praktikan.txt");
-        ArrayList<Praktikan> listPraktikan = IOHandler.addPraktikanFromText(filea);
-        for (int i=0; i<listPraktikan.size();i++){
-            System.out.println("\nPraktikan "+(i+1)+": "+listPraktikan.get(i).getNama()+"\nPosisi:"+listPraktikan.get(i).getPos().toString());
-        }
-    }
-    
-     
-
 } 

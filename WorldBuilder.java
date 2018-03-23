@@ -1,8 +1,10 @@
+import java.util.ArrayList;
+
 //WorldBuilder.java
 public class WorldBuilder {
     private final Asisten asisten1,asisten2;
     private final Praktikan praktikan1, praktikan2, praktikan3, praktikan4;
-    private Question[] questionList;
+    private ArrayList<Question> questionList;
 
     //constructor using builder design pattern
     private WorldBuilder(Builder builder){
@@ -54,18 +56,18 @@ public class WorldBuilder {
     /**
      * @return the questionList
      */
-    public Question[] getQuestionList() {
+    public ArrayList<Question> getQuestionList() {
         return questionList;
     }
     //Another getter
     public Question getQuestion(int i){
-        return questionList[i];
+        return questionList.get(i);
     }
     //static inner class builder
     public static class Builder{
         private Asisten asisten1, asisten2;
         private Praktikan praktikan1, praktikan2, praktikan3, praktikan4;
-        private Question[] questionList;
+        private ArrayList<Question> questionList;
 
         //method builder
         public Builder asisten1(final Asisten asisten1){
@@ -95,7 +97,7 @@ public class WorldBuilder {
             return this;
         }
 
-        public Builder questionList(final Question[] questionList){
+        public Builder questionList(final ArrayList<Question> questionList){
             this.questionList = questionList;
             return this;
         }

@@ -1,8 +1,12 @@
 Jessy 
-0 0
+0
+0
 Robert
-0 1
+0
+1
 Raudi
-0 2
+0
+2
 Kucing
-0 3
+0
+3

@@ -1,8 +1,12 @@
 Rifda 
-6 5
+6
+5
 Varrel
-5 9
+5 
+9
 Sandro
-13 5
+13 
+5
 Athur
-3 7
+3 
+7

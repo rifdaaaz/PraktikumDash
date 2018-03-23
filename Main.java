@@ -7,7 +7,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
 
-        System.out.println("Praktikan 1 di cell " + world.getPraktikan().getPos())
+        System.out.println("Praktikan 1 di cell " + world.getPraktikan1().getPos());
+        System.out.println("Praktikan 2 di cell " + world.getPraktikan2().getPos());
+
+        
 
     }
 

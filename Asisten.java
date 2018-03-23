@@ -26,7 +26,7 @@ public class Asisten extends Mahasiswa{
 		return false;
 	}
 
-	public getLogo(){
+	public char getLogo(){
 		return logo;
 	}
 

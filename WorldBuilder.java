@@ -1,6 +1,4 @@
-import java.io.*;
-import java.util.Scanner;
-
+//WorldBuilder.java
 public class WorldBuilder {
     private final Asisten asisten1,asisten2;
     private final Praktikan praktikan1, praktikan2, praktikan3, praktikan4;

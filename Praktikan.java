@@ -11,13 +11,11 @@ public class Praktikan extends Mahasiswa {
     super(nama, pos);
     this.q = q;
     count++;
-		logo +=count; 
+		logo +=count-1; 
   }
 
   public Praktikan(Praktikan p) {
     this(p.nama, p.pos, p.q);
-    count++;
-		logo +=count; 
   }
 
   // Builder Praktikan

@@ -42,20 +42,35 @@ public class Map {
         map[place.getX()][place.getY()] = '#';
     }
 
+    public void setTitik(Position place) {
+        map[place.getX()][place.getY()] = '.';
+    }
+
     public static void main(String[] args) {
         Map map = new Map();
-        Position letak = new Position(3,5);
-        Asisten sandro = new Asisten("Sandro", letak);
+        Position letakSandro = new Position(3,5);
+        Asisten sandro = new Asisten("Sandro", letakSandro);
         map.placeAsisten(sandro);
-        
-        letak.setX(9); letak.setY(5);
-        Praktikan athur = new Praktikan("Athur", letak);
-        map.printMap();
-        
-        map.printMap();
-        
+
+        Position letakAthur = new Position(12,12);
+        Praktikan athur = new Praktikan("Athur", letakAthur);
         map.placePraktikan(athur);
-        map.printMap();
+
+        sandro.setTarget(athur);
+        while(!sandro.isSampai()){
+            map.setTitik(sandro.getPos());
+			sandro.move();
+            map.placeAsisten(sandro);
+			map.printMap();
+            try        
+            {
+                Thread.sleep(1000);
+            } 
+            catch(InterruptedException ex) 
+            {
+                Thread.currentThread().interrupt();
+            }
+		}
     }
 
 }

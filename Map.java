@@ -70,6 +70,7 @@ public class Map {
             {
                 Thread.currentThread().interrupt();
             }
+            System.out.print("\033\143");
 		}
     }
 

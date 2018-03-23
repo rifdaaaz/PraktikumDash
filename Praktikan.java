@@ -9,6 +9,9 @@ public class Praktikan extends Mahasiswa {
     super(nama, pos);
     this.q = q;
   }
+  public Praktikan(Praktikan p) {
+    Praktikan(p.nama, p.pos, p.q);
+  }
 
   // Builder Praktikan
 

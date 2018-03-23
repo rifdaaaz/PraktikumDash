@@ -22,4 +22,10 @@ public class Question {
   public void setAnswer(String answer) {
     this.answer = answer;
   }
+
+  public String toString() {
+    String hasil;
+    hasil = "Pertanyaannya adalah : " + this.question;
+    return hasil;
+  }
 }

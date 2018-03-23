@@ -39,7 +39,6 @@ public class Praktikan extends Mahasiswa {
   } */
 
 
-
   public void addQuestion(Question[] question) {
     Random rand = new Random();
     int n = rand.nextInt(3) + 1;

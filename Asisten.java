@@ -2,12 +2,19 @@
 import java.util.*;
 
 public class Asisten extends Mahasiswa{
+	private static int count = 0;
 	private Praktikan target;
+	private int life = 2;
+	private char logo = 'A';
 
 	public Asisten(String nama, Position pos){
 		super(nama, pos);
 		target = null;
+		life = 2;
+		count++;
+		logo +=count; 
 	}
+
 	private void setTarget(Praktikan target){
 		this.target = new Praktikan(target);
 	}
@@ -17,6 +24,10 @@ public class Asisten extends Mahasiswa{
 			return pos.equals(target.getPos());
 		}
 		return false;
+	}
+
+	public getLogo(){
+		return logo;
 	}
 
 	public void move(){

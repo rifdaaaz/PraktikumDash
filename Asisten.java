@@ -4,21 +4,15 @@ import java.util.*;
 public class Asisten extends Mahasiswa{
 	private static int count = 0;
 	private Praktikan target;
-<<<<<<< HEAD
 	private int life = 2;
 	private char logo = 'A';
-=======
->>>>>>> 9f83555c98174b2ba5d7ceffc902dd13badf3744
 
 	public Asisten(String nama, Position pos){
 		super(nama, pos);
 		target = null;
-<<<<<<< HEAD
 		life = 2;
 		count++;
 		logo +=count; 
-=======
->>>>>>> 9f83555c98174b2ba5d7ceffc902dd13badf3744
 	}
 
 	private void setTarget(Praktikan target){

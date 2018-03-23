@@ -4,7 +4,7 @@ public abstract class Mahasiswa extends Thread {
 
 	public Mahasiswa(String _nama, Position _pos){
 		this.nama = _nama;
-		this.pos = _pos;
+		this.pos = new Position(_pos);
 	}
 
 	public Position getPos() {

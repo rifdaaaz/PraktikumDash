@@ -52,11 +52,10 @@ public class Praktikan extends Mahasiswa {
   public void addQuestion(Question[] question) {
     Random rand = new Random();
     int n = rand.nextInt(3) + 1;
-    int questionIndex = rand.nextInt(question.length);
 
     for (int i = 0; i < n; i ++ ) {
+      int questionIndex = rand.nextInt(question.length);
       q.add(question[questionIndex]);
-      questionIndex = rand.nextInt(question.length);
     }
   }
 

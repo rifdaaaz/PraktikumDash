@@ -64,7 +64,7 @@ public class Praktikan extends Mahasiswa {
   }
 
   public Question getQuestion() {
-    Question head = q.peek();
+    Question head = q.poll();
     return head;
   }
 

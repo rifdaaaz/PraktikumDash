@@ -56,10 +56,11 @@ public class Asisten extends Mahasiswa{
 			System.out.println("KOSONG");
 		}
 		do{
-			System.out.println(q.getQuestion());
+			System.out.println("Pertanyaan : " + q.getQuestion());
+			System.out.print("Jawabanmu : ");
 			ans = s.next();
 			if(!ans.equals(q.getAnswer())){
-				System.out.println("Masih Salah");
+				System.out.println("Jawabanmu masih salah :(");
 				life--;
 				if(life<=0){
 					System.out.println("Asisten " + nama + " pingsan w -_-'");

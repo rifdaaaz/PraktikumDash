@@ -1,4 +1,4 @@
-public class Mahasiswa extends Thread {
+public abstract class Mahasiswa extends Thread {
 	protected final Position pos;
 	protected final String nama;
 

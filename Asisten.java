@@ -67,9 +67,9 @@ public class Asisten extends Mahasiswa{
 	public void move(){
 		Position dest = new Position(target.getPos());		
 		if(!isSampai()){
-			if(pos.getX() < dest.getY()){
+			if(pos.getX() < dest.getX()){
 				pos.move(1, 0);
-			}else if(pos.getX() > dest.getY()){
+			}else if(pos.getX() > dest.getX()){
 				pos.move(-1, 0);
 			}
 			else{
@@ -86,13 +86,10 @@ public class Asisten extends Mahasiswa{
 		Scanner s = new Scanner(System.in);
 		String ans;
 		Question q = target.getQuestion();
-		if(q==null){
-			System.out.println("KOSONG");
-		}
 		do{
 			System.out.println("Pertanyaan : " + q.getQuestion());
 			System.out.print("Jawabanmu : ");
-			ans = s.next();
+			ans = s.nextLine();
 			if(!ans.equals(q.getAnswer())){
 				System.out.println("Jawabanmu masih salah :(");
 				life--;

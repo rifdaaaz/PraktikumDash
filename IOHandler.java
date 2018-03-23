@@ -35,13 +35,13 @@ public class IOHandler {
             System.err.println(e.getMessage());
         }
         String line1,line2,line3; //read from txt
-        ArrayList<Praktikan> arrPraktikan = new ArrayList(4);
+        ArrayList<Praktikan> arrPraktikan = new ArrayList(6);
         int i = 0; //index 
         while(inFile.hasNext()){
             line1 = inFile.nextLine();
             line2 = inFile.nextLine();
             line3 = inFile.nextLine();
-            arrPraktikan.add(i,new Praktikan(line1,new Position (Integer.parseInt(line2),Integer.parseInt(line3))));
+            arrPraktikan.add(i,new Praktikan.Builder().nama(line1).pos(new Position (Integer.parseInt(line2),Integer.parseInt(line3))).create());
             i++;
         }
         return arrPraktikan;
@@ -61,7 +61,7 @@ public class IOHandler {
             line1 = inFile.nextLine();
             line2 = inFile.nextLine();
             line3 = inFile.nextLine();
-            arrAsisten.add(i,new Asisten(line1,new Position (Integer.parseInt(line2),Integer.parseInt(line3))));
+            arrAsisten.add(i,new Asisten.Builder().nama(line1).pos(new Position (Integer.parseInt(line2),Integer.parseInt(line3))).build());
             i++;
         }
         return arrAsisten;

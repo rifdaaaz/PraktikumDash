@@ -62,7 +62,7 @@ public class Praktikan extends Mahasiswa {
   }
 
   public boolean hasQuestion() {
-    return (this.q.size() == 0);
+    return (this.q.size() > 0);
   }
 
   public void move(Position p) {

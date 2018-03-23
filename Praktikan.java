@@ -5,19 +5,16 @@ import java.util.Random;
 public class Praktikan extends Mahasiswa {
   private Queue<Question> q = new LinkedList<>();
 
-  public Praktikan(String nama, Position pos, Queue<Question> q) {
-    super(nama, pos);
-    this.q = q;
-  } 
-
   public Praktikan(String nama, Position pos) {
     super(nama, pos);
     this.q = null;
   }
 
   public Praktikan(Praktikan p) {
-    this(p.nama, p.pos, p.q);
+    this(p.nama, p.pos);
   }
+
+  public void setQ()
 
   // Builder Praktikan
 

@@ -7,15 +7,14 @@ public class Praktikan extends Mahasiswa {
   private char logo = '1';
   private Queue<Question> q = new LinkedList<>();
 
-  public Praktikan(String nama, Position pos, Queue<Question> q) {
+  public Praktikan(String nama, Position pos) {
     super(nama, pos);
-    this.q = q;
     count++;
 		logo +=count-1; 
   }
 
   public Praktikan(Praktikan p) {
-    this(p.nama, p.pos, p.q);
+    this(p.nama, p.pos);
   }
 
   // Builder Praktikan

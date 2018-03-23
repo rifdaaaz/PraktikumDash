@@ -16,7 +16,7 @@ public class Asisten extends Mahasiswa{
 	}
 
 	public void setTarget(Praktikan target){
-		this.target = new Praktikan(target);
+		this.target = target;
 	}
 
 	public boolean isSampai(){
@@ -52,6 +52,9 @@ public class Asisten extends Mahasiswa{
 		Scanner s = new Scanner(System.in);
 		String ans;
 		Question q = target.getQuestion();
+		if(q==null){
+			System.out.println("KOSONG");
+		}
 		do{
 			System.out.println(q.getQuestion());
 			ans = s.next();
@@ -84,6 +87,10 @@ public class Asisten extends Mahasiswa{
 		Asisten a = new Asisten("SandroAssist", new Position(0,0));
 		p.addQuestion(q);
 		a.setTarget(p);
+
+		Question q1 = p.getQuestion();
+		System.out.println(q1.getQuestion());
+		System.out.println("masuk");
 
 		while(!a.isSampai()){
 			a.move();

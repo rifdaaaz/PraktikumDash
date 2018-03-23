@@ -57,12 +57,12 @@ public class Asisten extends Mahasiswa{
 	}
 
 	public static void main(String[] args) {
-		Queue<Question> q = new LinkedList<>();
-		q.add(new Question("a1","q1"));
-		q.add(new Question("a2","q2"));
-		q.add(new Question("a3","q3"));
+		Question q = new Question[3];
+		q = new Question("a1","q1");
+		q = new Question("a2","q2");
+		q = new Question("a3","q3");
 
-		Praktikan p = new Praktikan("Sandro", new Position(5,5),q);
+		Praktikan p = new Praktikan("Sandro", new Position(5,5));
 		Asisten a = new Asisten("SandroAssist", new Position(0,0));
 		a.setTarget(p);
 

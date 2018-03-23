@@ -12,7 +12,7 @@ public class Asisten extends Mahasiswa{
 		target = null;
 		life = 2;
 		count++;
-		logo +=count; 
+		logo +=count-1; 
 	}
 
 	private void setTarget(Praktikan target){
@@ -50,7 +50,7 @@ public class Asisten extends Mahasiswa{
 
 	public void display(){
 		if(isSampai()){
-			System.out.println("Asisten " + nama + " sampai ke Praktikan " + target.getNama());
+			System.out.println("Asisten " + nama + "("+logo+") sampai ke Praktikan " + target.getNama());
 		}else{
 			System.out.println("Asisten " + nama + " berjalan ke " + pos);
 		}

@@ -30,18 +30,31 @@ public class Map {
         }
     }
 
-    public void placeAsisten(Position place, Asisten asisten) {
-        map[place.getX()][place.getY()] = asisten.getLogo();
+    public void placeAsisten(Asisten asisten) {
+        map[asisten.getPos().getX()][asisten.getPos().getY()] = asisten.getLogo();
     }
 
-    public void placePraktikan(Position place, Praktikan praktikan) {
-        map[place.getX()][place.getY()] = praktikan.getLogo();
+    public void placePraktikan(Praktikan praktikan) {
+        map[praktikan.getPos().getX()][praktikan.getPos().getY()] = praktikan.getLogo();
+    }
+
+    public void placeWall(Position place) {
+        map[place.getX()][place.getY()] = '#';
     }
 
     public static void main(String[] args) {
         Map map = new Map();
-        WorldBuilder world = new WorldBuilder();
-
+        Position letak = new Position(3,5);
+        Asisten sandro = new Asisten("Sandro", letak);
+        map.placeAsisten(sandro);
+        
+        letak.setX(9); letak.setY(5);
+        Praktikan athur = new Praktikan("Athur", letak);
+        map.printMap();
+        
+        map.printMap();
+        
+        map.placePraktikan(athur);
         map.printMap();
     }
 

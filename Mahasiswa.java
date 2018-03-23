@@ -2,7 +2,7 @@ public abstract class Mahasiswa extends Thread {
 	protected Position pos;
 	protected String nama;
 
-	private Mahasiswa(Position _pos, String _nama){
+	private Mahasiswa(String _nama, Position _pos){
 		this.nama = _nama;
 		this.pos = _pos;
 	}

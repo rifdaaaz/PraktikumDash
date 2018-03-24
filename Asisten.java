@@ -42,10 +42,11 @@ public class Asisten extends Mahasiswa{
 		public Builder pos(Position pos){
 			this.pos = pos;
 			return this;
-		}
+		}		
 		public Asisten build(){
 			return new Asisten(this);
 		}
+
 
 	}
 
@@ -65,7 +66,7 @@ public class Asisten extends Mahasiswa{
 	}
 
 	public void move(){
-		Position dest = new Position(target.getPos());		
+		Position dest = new Position(target.getPos());
 		if(!isSampai()){
 			if(pos.getX() < dest.getX()){
 				pos.move(1, 0);
@@ -83,8 +84,10 @@ public class Asisten extends Mahasiswa{
 	}
 
 	public void jawab(){
+		this.interrupt();
 		Scanner s = new Scanner(System.in);
 		String ans;
+		QueuePraktikan qp = QueuePraktikan.getInstance();
 		Question q = target.getQuestion();
 		do{
 			System.out.println("Pertanyaan : " + q.getQuestion());
@@ -98,6 +101,9 @@ public class Asisten extends Mahasiswa{
 				}
 			}
 		}while(!ans.equals(q.getAnswer()) && life > 0);
+		if(target.hasQuestion()){
+			qp.add(target);
+		}
 		s.close();
 	}
 
@@ -110,27 +116,49 @@ public class Asisten extends Mahasiswa{
 		}
 	}
 
-	public static void main(String[] args) {
-		Question q[] = new Question[3];
-		q[0] = new Question("a1","q1");
-		q[1] = new Question("a2","q2");
-		q[2] = new Question("a3","q3");
-
-		Praktikan p = new Praktikan.Builder().nama("Sandro")
-											 .pos(new Position(5,5)).create();
-		Asisten a = new Asisten.Builder().nama("SandroAssist")
-										 .pos(new Position(0, 0)).build();
-		p.addQuestion(q);
-		a.setTarget(p);
-
-		Question q1 = p.getQuestion();
-		System.out.println(q1.getQuestion());
-		System.out.println("masuk");
-
-		while(!a.isSampai()){
-			a.move();
-			a.display();
+	// ======================
+	// 			RUN
+	// ======================
+	@Override
+	public void run() {
+		QueuePraktikan qp = QueuePraktikan.getInstance();
+		setTarget(qp.poll());
+		System.out.println(target.getPos());
+		while(!qp.isEmpty()){
+	        while (!isSampai()) {
+	        	move();
+	            try {
+	                Thread.sleep(500);
+	            } catch (InterruptedException ex) {
+	                Thread.currentThread().interrupt();
+	            }
+	        }
+        	jawab();
+	        setTarget(qp.poll());
 		}
 	}
+
+	// public static void main(String[] args) {
+	// 	Question q[] = new Question[3];
+	// 	q[0] = new Question("a1","q1");
+	// 	q[1] = new Question("a2","q2");
+	// 	q[2] = new Question("a3","q3");
+
+	// 	Praktikan p = new Praktikan.Builder().nama("Sandro")
+	// 										 .pos(new Position(5,5)).create();
+	// 	Asisten a = new Asisten.Builder().nama("SandroAssist")
+	// 									 .pos(new Position(0, 0)).build();
+	// 	p.addQuestion(q);
+	// 	a.setTarget(p);
+
+	// 	Question q1 = p.getQuestion();
+	// 	System.out.println(q1.getQuestion());
+	// 	System.out.println("masuk");
+
+	// 	while(!a.isSampai()){
+	// 		a.move();
+	// 		a.display();
+	// 	}
+	// }
 
 }

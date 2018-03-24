@@ -18,10 +18,9 @@ public class Main {
                                                         .questionList(new ArrayList<Question>()).build();
         Map map = new Map();
         // Position letakSandro = new Position(3, 5);
-        Asisten sandro = world.getAsisten1();
-        Asisten varrel = world.getAsisten2();
-        map.placeAsisten(sandro);
-        map.placeAsisten(varrel);
+        Asisten a[] = new Asisten[2];
+        a[0] = world.getAsisten1();
+        a[1] = world.getAsisten2();
 
         // Position letakAthur = new Position(6, 6);
         Praktikan[] p = new Praktikan[4];
@@ -30,33 +29,39 @@ public class Main {
         p[2] = world.getPraktikan2();
         p[3] = world.getPraktikan3();
         arrq = qList.toArray(arrq);
-        for (int i = 0; i < 4; i++) {
-            p[i].addQuestion(arrq);
-            map.placePraktikan(p[i]);
-        }
-        
+                
         QueuePraktikan qp = QueuePraktikan.getInstance();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < p.length; i++) {
+            p[i].addQuestion(arrq);
             if(p[i].hasQuestion()) {
                 qp.add(p[i]);
             }
         }
-        sandro.setTarget(qp.poll());
-        //System.out.println(athur.getPos());
+
+        for (int i = 0; i< a.length; i++) {
+            a[i].start();
+        }
+
+        
         while (!qp.isEmpty()) {
-            while (!sandro.isSampai()) {
-                map.setTitik(sandro.getPos());
-                sandro.move();
-                map.placeAsisten(sandro);
-                map.printMap();
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }
+            for (int i = 0; i<a.length; i++) {
+                // map.setTitik(a[i].getPos());
+                // map.placeAsisten(a[i]);
+                a[i].display();
             }
-            sandro.jawab();
-            sandro.setTarget(qp.poll());
+
+            // for (int i = 0; i<p.length; i++) {
+                // map.setTitik(p[i].getPos());
+                // map.placePraktikan(p[i]);
+            // }
+
+            // map.printMap();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+
         }
     }
 

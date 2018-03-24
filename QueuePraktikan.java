@@ -35,9 +35,11 @@ public class QueuePraktikan {
 	// Retrieves and removes the head of this queue, or returns null if this
 	// queue is empty.
 	public Praktikan poll() {
-		Praktikan data = queue.poll();
-		return data;
-	}
+		synchronized (queue) {
+			Praktikan data = queue.poll();
+			return data;
+		}
+	} 
  
 	// Returns true if this collection contains no elements
 	public boolean isEmpty() {

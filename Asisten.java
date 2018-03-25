@@ -54,6 +54,10 @@ public class Asisten extends Mahasiswa{
 		this.target = target;
 	}
 
+	public int getLife() {
+		return this.life;
+	}
+
 	public boolean isSampai(){
 		if(target != null){
 			return pos.equals(target.getPos());
@@ -92,7 +96,7 @@ public class Asisten extends Mahasiswa{
 		do{
 			System.out.println("Pertanyaan : " + q.getQuestion());
 			System.out.print("Jawabanmu : ");
-			ans = s.nextLine();
+			ans = s.next();
 			if(!ans.equals(q.getAnswer())){
 				System.out.println("Jawabanmu masih salah :(");
 				life--;
@@ -110,7 +114,7 @@ public class Asisten extends Mahasiswa{
 	public void display(){
 		if(isSampai()){
 			System.out.println("Asisten " + nama + "("+logo+") sampai ke Praktikan " + target.getNama());
-			jawab();
+			//jawab();
 		}else{
 			System.out.println("Asisten " + nama + " berjalan ke " + pos);
 		}

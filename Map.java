@@ -52,4 +52,8 @@ public class Map {
         map[place.getX()][place.getY()] = '.';
     }
 
+    public void setKoor(char logo, Position place) {
+        map[place.getX()][place.getY()] = logo;
+    }
+
 }

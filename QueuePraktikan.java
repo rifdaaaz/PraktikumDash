@@ -51,4 +51,9 @@ public class QueuePraktikan {
 	public int getTotalSize() {
 		return queue.size();
 	}
+
+	public Praktikan peek(){
+		Praktikan head = queue.peek();
+		return head;
+	}
 }

@@ -96,7 +96,7 @@ public class Asisten extends Mahasiswa{
 		do{
 			System.out.println("Pertanyaan : " + q.getQuestion());
 			System.out.print("Jawabanmu : ");
-			ans = scanner.next();
+			ans = s.next();
 			if(!ans.equals(q.getAnswer())){
 				System.out.println("Jawabanmu masih salah :(");
 				life--;

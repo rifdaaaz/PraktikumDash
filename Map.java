@@ -32,6 +32,10 @@ public class Map {
         }
     }
 
+    public char[][] get() {
+        return map;
+    }
+
     public void placeAsisten(Asisten asisten) {
         map[asisten.getPos().getX()][asisten.getPos().getY()] = asisten.getLogo();
     }

@@ -119,6 +119,7 @@ public class Asisten extends Mahasiswa{
 	// ======================
 	// 			RUN
 	// ======================
+
 	@Override
 	public void run() {
 		QueuePraktikan qp = QueuePraktikan.getInstance();

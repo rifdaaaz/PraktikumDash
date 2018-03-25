@@ -7,11 +7,11 @@ class Position {
   /** CTOR, CCTOR */
   public Position() { x = 0; y = 0; }
   public Position(int _x, int _y) { x = _x; y = _y; }
-  public Position(final Position p) { x = p.x; y = p.y; }
+  public Position (Position p) { x = p.x; y = p.y; }
 
   /** GETTER, SETTER */
-  public final int getX() { return x; }
-  public final int getY() { return y; }
+  public int getX() { return x; }
+  public int getY() { return y; }
   public void setX(int _x) { x = _x; }
   public void setY(int _y) { y = _y; }
 

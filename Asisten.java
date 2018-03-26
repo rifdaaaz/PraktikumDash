@@ -87,7 +87,7 @@ public class Asisten extends Mahasiswa{
 		}
 	}
 
-	public void jawab(){
+	public synchronized void jawab(){
 		this.interrupt();
 		Scanner s = new Scanner(System.in);
 		String ans;
@@ -111,12 +111,16 @@ public class Asisten extends Mahasiswa{
 		s.close();
 	}
 
-	public void display(){
+	public synchronized void display(){
+		if(!isSampai()){
+			System.out.println("Asisten " + nama + " berjalan ke " + pos);
+		}
+	}
+
+	public void displaySampai(){
 		if(isSampai()){
 			System.out.println("Asisten " + nama + "("+logo+") sampai ke Praktikan " + target.getNama());
 			//jawab();
-		}else{
-			System.out.println("Asisten " + nama + " berjalan ke " + pos);
 		}
 	}
 
@@ -133,12 +137,18 @@ public class Asisten extends Mahasiswa{
 	        while (!isSampai()) {
 	        	move();
 	            try {
-	                Thread.sleep(500);
+	                Thread.sleep(1000);
 	            } catch (InterruptedException ex) {
 	                Thread.currentThread().interrupt();
 	            }
 	        }
+	        displaySampai();
         	jawab();
+        	try {
+	                Thread.sleep(10000);
+	            } catch (InterruptedException ex) {
+	                Thread.currentThread().interrupt();
+	            }
 	        setTarget(qp.poll());
 		}
 	}

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.*;
 
 public class Main {
        
@@ -41,21 +42,31 @@ public class Main {
         for (int i = 0; i< a.length; i++) {
             a[i].start();
         }
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                View view = new View();
+                view.setVisible(true);
+                view.setView(map.get());
+                view.repaint();
+            }
+        });
 
         
         while (!qp.isEmpty()) {
             for (int i = 0; i<a.length; i++) {
-                // map.setTitik(a[i].getPos());
-                // map.placeAsisten(a[i]);
-                a[i].display();
+                 map.setTitik(a[i].getPos());
+                 map.placeAsisten(a[i]);
+                 a[i].display();
             }
 
-            // for (int i = 0; i<p.length; i++) {
-                // map.setTitik(p[i].getPos());
-                // map.placePraktikan(p[i]);
-            // }
+             for (int i = 0; i<p.length; i++) {
+                 map.setTitik(p[i].getPos());
+                 map.placePraktikan(p[i]);
+             }
 
-            // map.printMap();
+            //map.printMap();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {

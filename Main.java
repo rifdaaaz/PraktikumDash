@@ -42,38 +42,39 @@ public class Main {
         for (int i = 0; i< a.length; i++) {
             a[i].start();
         }
-        SwingUtilities.invokeLater(new Runnable() {
+        // SwingUtilities.invokeLater(new Runnable() {
 
-            @Override
-            public void run() {
-                View view = new View();
-                view.setVisible(true);
-                view.setView(map.get());
-                view.repaint();
-            }
-        });
+        //     @Override
+        //     public void run() {
+        //         View view = new View();
+        //         view.setVisible(true);
+        //         view.setView(map.get());
+        //         view.revalidate();
+        //         view.repaint();
+        //         System.out.println("HELLO");
+        //     }
+        // });
 
         
-        while (!qp.isEmpty()) {
-            for (int i = 0; i<a.length; i++) {
-                 map.setTitik(a[i].getPos());
-                 map.placeAsisten(a[i]);
-                 a[i].display();
-            }
+        // while (!qp.isEmpty()) {
+        //     for (int i = 0; i<a.length; i++) {
+        //          map.setTitik(a[i].getPos());
+        //          map.placeAsisten(a[i]);
+        //     }
 
-             for (int i = 0; i<p.length; i++) {
-                 map.setTitik(p[i].getPos());
-                 map.placePraktikan(p[i]);
-             }
+        //      for (int i = 0; i<p.length; i++) {
+        //          map.setTitik(p[i].getPos());
+        //          map.placePraktikan(p[i]);
+        //      }
 
             //map.printMap();
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
+            // try {
+            //     Thread.sleep(500);
+            // } catch (InterruptedException ex) {
+            //     Thread.currentThread().interrupt();
+            // }
 
-        }
+        //}
     }
 
 

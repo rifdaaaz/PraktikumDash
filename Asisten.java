@@ -2,10 +2,12 @@
 import java.util.*;
 
 public class Asisten extends Mahasiswa{
+	private static boolean isPaused = false;
 	private static int count = 0;
 	private Praktikan target;
 	private int life = 2;
 	private char logo = 'A';
+	private static final Scanner s = new Scanner(System.in);
 
 /* 	public Asisten(String nama, Position pos){
 		super(nama, pos);
@@ -88,8 +90,8 @@ public class Asisten extends Mahasiswa{
 	}
 
 	public synchronized void jawab(){
-		this.interrupt();
-		Scanner s = new Scanner(System.in);
+		// this.interrupt();
+		Asisten.togglePause();
 		String ans;
 		QueuePraktikan qp = QueuePraktikan.getInstance();
 		Question q = target.getQuestion();
@@ -108,7 +110,7 @@ public class Asisten extends Mahasiswa{
 		if(target.hasQuestion()){
 			qp.add(target);
 		}
-		s.close();
+		Asisten.togglePause();
 	}
 
 	public synchronized void display(){
@@ -135,18 +137,38 @@ public class Asisten extends Mahasiswa{
 		System.out.println(target.getPos());
 		while(!qp.isEmpty()){
 	        while (!isSampai()) {
+	        	while (isPaused) {
+	        		try {
+	        			// System.out.println(nama + " NYANGKUT disini");
+	                	Thread.sleep(1000);
+		            } catch (InterruptedException ex) {
+		                Thread.currentThread().interrupt();
+		            }
+	        	}
 	        	move();
+	        	display();
 	            try {
 	                Thread.sleep(1000);
 	            } catch (InterruptedException ex) {
 	                Thread.currentThread().interrupt();
 	            }
 	        }
+	        while (isPaused) {
+	        	try {
+        			// System.out.println(nama + " NYANGKUT disana");
+                	Thread.sleep(1000);
+	            } catch (InterruptedException ex) {
+	                Thread.currentThread().interrupt();
+	            }
+        	}
 	        displaySampai();
-	        Thread.interrupt();
         	jawab();
 	        setTarget(qp.poll());
 		}
+	}
+
+	public static void togglePause() {
+		isPaused = isPaused ? false : true;
 	}
 
 	// public static void main(String[] args) {

@@ -143,12 +143,8 @@ public class Asisten extends Mahasiswa{
 	            }
 	        }
 	        displaySampai();
+	        Thread.interrupt();
         	jawab();
-        	try {
-	                Thread.sleep(10000);
-	            } catch (InterruptedException ex) {
-	                Thread.currentThread().interrupt();
-	            }
 	        setTarget(qp.poll());
 		}
 	}

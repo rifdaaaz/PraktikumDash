@@ -3,6 +3,14 @@ import java.util.Scanner;
 import javax.swing.*;
 
 public class Main {
+    private static boolean GameOver = false;
+    public static void setGameOver(boolean b){
+        GameOver = b;
+    }
+    
+    public static boolean getGameOver(){
+        return GameOver;
+    }
        
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -10,7 +18,7 @@ public class Main {
         Question[] arrq = new Question[qList.size()];
         ArrayList<Praktikan> pList = IOHandler.addPraktikanFromText(IOHandler.stringToFile("praktikan.txt"));
         ArrayList<Asisten> aList = IOHandler.addAsistenFromText(IOHandler.stringToFile("asisten.txt"));
-        WorldBuilder world = new WorldBuilder.Builder().asisten1(aList.get(0))
+        WorldBuilder world = new WorldBuilder.Builder() .asisten1(aList.get(0))
                                                         .asisten2(aList.get(1))
                                                         .praktikan1(pList.get(0))
                                                         .praktikan2(pList.get(1))
@@ -24,11 +32,11 @@ public class Main {
         a[1] = world.getAsisten2();
 
         // Position letakAthur = new Position(6, 6);
-        Praktikan[] p = new Praktikan[4];
+        Praktikan[] p = new Praktikan[3];
         p[0] = world.getPraktikan4();
         p[1] = world.getPraktikan1();
         p[2] = world.getPraktikan2();
-        p[3] = world.getPraktikan3();
+        // p[3] = world.getPraktikan3();
         arrq = qList.toArray(arrq);
                 
         QueuePraktikan qp = QueuePraktikan.getInstance();
@@ -59,24 +67,15 @@ public class Main {
         //     }
         // });
 
-        
-        while (!qp.isEmpty() || Asisten.getCount() > 0) {
-            // for (int i = 0; i<a.length; i++) {
-            //      map.setTitik(a[i].getPos());
-            //      map.placeAsisten(a[i]);
-            // }
+        setGameOver(qp.isEmpty() || Asisten.getCount() <= 0);
+        while (!getGameOver()) {
+            setGameOver(qp.isEmpty() || Asisten.getCount() <= 0);
 
-            //  for (int i = 0; i<p.length; i++) {
-            //      map.setTitik(p[i].getPos());
-            //      map.placePraktikan(p[i]);
-            //  }
-
-            // map.printMap();
-            // try {
-            //     Thread.sleep(500);
-            // } catch (InterruptedException ex) {
-            //     Thread.currentThread().interrupt();
-            // }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
 
         }
 

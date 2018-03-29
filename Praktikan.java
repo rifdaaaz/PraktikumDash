@@ -70,7 +70,7 @@ public class Praktikan extends Mahasiswa {
   }
 
   public void run() {
-    while(hasQuestion()){
+    while(hasQuestion() && !Main.getGameOver()){
       Random rand = new Random();
       int n = rand.nextInt(4)+3;
       try {

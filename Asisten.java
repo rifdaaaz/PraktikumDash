@@ -94,8 +94,7 @@ public class Asisten extends Mahasiswa{
 		}
 	}
 
-	public void jawab(){
-		// this.interrupt();
+	public synchronized void jawab(){
 		Asisten.togglePause();
 		Praktikan.togglePause();
 		String ans;

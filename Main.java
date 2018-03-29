@@ -3,6 +3,14 @@ import java.util.Scanner;
 import javax.swing.*;
 
 public class Main {
+    private static boolean GameOver = false;
+    public static void setGameOver(boolean b){
+        GameOver = b;
+    }
+    
+    public static boolean getGameOver(){
+        return GameOver;
+    }
        
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in); //Instatiate new scanner obj
@@ -63,8 +71,11 @@ public class Main {
         for (int i = 0; i< a.length; i++) {
             a[i].start(); // menjalankan thread asisten untuk seluruh asisten pada array of asisten
         }
-        
-        // SwingUtilities.invokeLater(new Runnable()) {
+
+        for (int i = 0; i< p.length; i++) {
+            p[i].start();
+        }
+        // SwingUtilities.invokeLater(new Runnable() {
 
         //     @Override
         //     public void run() {
@@ -77,26 +88,24 @@ public class Main {
         //     }
         // });
 
-        
-        // while (!qp.isEmpty()) {
-        //     for (int i = 0; i<a.length; i++) {
-        //          map.setTitik(a[i].getPos());
-        //          map.placeAsisten(a[i]);
-        //     }
+        setGameOver(qp.isEmpty() || Asisten.getCount() <= 0);
+        while (!getGameOver()) {
+            setGameOver(qp.isEmpty() || Asisten.getCount() <= 0);
 
-        //      for (int i = 0; i<p.length; i++) {
-        //          map.setTitik(p[i].getPos());
-        //          map.placePraktikan(p[i]);
-        //      }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
 
-        //     map.printMap();
-        //     try {
-        //         Thread.sleep(1000);
-        //     } catch (InterruptedException ex) {
-        //         Thread.currentThread().interrupt();
-        //     }
+        }
 
-        // }
+        if (Asisten.getCount() <= 0) {
+            System.out.println("Semua asisten pingsan, praktikum kali ini repeating semua");
+        } else{
+            System.out.println("Praktikum Selesai");
+        }
+
     }
 
 

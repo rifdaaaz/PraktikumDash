@@ -5,7 +5,7 @@ public class Asisten extends Mahasiswa{
 	private static boolean isPaused = false;
 	private static int count = 0;
 	private Praktikan target;
-	private int life = 2;
+	private int life = 3;
 	private char logo = 'A';
 	private static final Scanner s = new Scanner(System.in);
 
@@ -29,6 +29,7 @@ public class Asisten extends Mahasiswa{
 		this.logo += count - 1;
 	}
 
+
 	public static class Builder {
 		private Praktikan target;
 		private int life = 2;
@@ -48,8 +49,10 @@ public class Asisten extends Mahasiswa{
 		public Asisten build(){
 			return new Asisten(this);
 		}
+	}
 
-
+	public static int getCount(){
+		return count;
 	}
 
 	public void setTarget(Praktikan target){
@@ -92,6 +95,7 @@ public class Asisten extends Mahasiswa{
 	public void jawab(){
 		// this.interrupt();
 		Asisten.togglePause();
+		Praktikan.togglePause();
 		String ans;
 		QueuePraktikan qp = QueuePraktikan.getInstance();
 		Question q = target.getQuestion();
@@ -103,16 +107,19 @@ public class Asisten extends Mahasiswa{
 				System.out.println("Jawabanmu masih salah :(");
 				life--;
 				if(life<=0){
-					System.out.println("Asisten " + nama + " pingsan w -_-'");
-					break;
+					System.out.println("Asisten " + nama + " pingsan dan walk out dari laboratorium");
 				}
 			}
 		}while(!ans.equals(q.getAnswer()) && life > 0);
-		synchronized(qp){
-			if(target.hasQuestion()){
-				qp.add(target);
-			}
+		
+		if(target.hasQuestion()){
+			qp.add(target);
 		}
+
+		if(life <= 0){
+			count--;
+		}
+		Praktikan.togglePause();
 		Asisten.togglePause();
 	}
 
@@ -124,7 +131,7 @@ public class Asisten extends Mahasiswa{
 
 	public void displaySampai(){
 		if(isSampai()){
-			System.out.println("Asisten " + nama + "("+logo+") sampai ke Praktikan " + target.getNama());
+			System.out.println("Asisten " + nama + " sampai ke Praktikan " + target.getNama());
 			//jawab();
 		}
 	}
@@ -136,17 +143,15 @@ public class Asisten extends Mahasiswa{
 	@Override
 	public void run() {
 		QueuePraktikan qp = QueuePraktikan.getInstance();
-		setTarget(qp.poll());
-		System.out.println(target.getPos());
-		while(!qp.isEmpty()){
+		while(!qp.isEmpty() && life > 0){
+			setTarget(qp.poll());
 	        while (!isSampai()) {
 	        	while (isPaused) {
 	        		try {
-	        			// System.out.println(nama + " NYANGKUT disini");
-	                	Thread.sleep(1000);
-		            } catch (InterruptedException ex) {
-		                Thread.currentThread().interrupt();
-		            }
+			          Thread.sleep(1000);
+			        } catch (InterruptedException ex) {
+			          Thread.currentThread().interrupt();
+			        }
 	        	}
 	        	move();
 	        	display();
@@ -158,43 +163,18 @@ public class Asisten extends Mahasiswa{
 	        }
 	        while (isPaused) {
 	        	try {
-        			// System.out.println(nama + " NYANGKUT disana");
-                	Thread.sleep(1000);
-	            } catch (InterruptedException ex) {
-	                Thread.currentThread().interrupt();
-	            }
-        	}
+		          Thread.sleep(1000);
+		        } catch (InterruptedException ex) {
+		          Thread.currentThread().interrupt();
+		        }
+	        }
 	        displaySampai();
         	jawab();
-	        setTarget(qp.poll());
 		}
 	}
 
 	public static void togglePause() {
 		isPaused = isPaused ? false : true;
 	}
-
-	// public static void main(String[] args) {
-	// 	Question q[] = new Question[3];
-	// 	q[0] = new Question("a1","q1");
-	// 	q[1] = new Question("a2","q2");
-	// 	q[2] = new Question("a3","q3");
-
-	// 	Praktikan p = new Praktikan.Builder().nama("Sandro")
-	// 										 .pos(new Position(5,5)).create();
-	// 	Asisten a = new Asisten.Builder().nama("SandroAssist")
-	// 									 .pos(new Position(0, 0)).build();
-	// 	p.addQuestion(q);
-	// 	a.setTarget(p);
-
-	// 	Question q1 = p.getQuestion();
-	// 	System.out.println(q1.getQuestion());
-	// 	System.out.println("masuk");
-
-	// 	while(!a.isSampai()){
-	// 		a.move();
-	// 		a.display();
-	// 	}
-	// }
 
 }

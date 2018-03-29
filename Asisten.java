@@ -4,6 +4,7 @@ import java.util.*;
 public class Asisten extends Mahasiswa{
 	private static boolean isPaused = false;
 	private static int count = 0;
+	private boolean active = true;
 	private Praktikan target;
 	private int life = 3;
 	private char logo = 'A';
@@ -24,6 +25,7 @@ public class Asisten extends Mahasiswa{
 		this.nama = builder.nama;
 		this.pos = builder.pos;
 		this.target = null;
+		this.active = true;
 		this.life = 2;
 		count++;
 		this.logo += count - 1;
@@ -170,7 +172,13 @@ public class Asisten extends Mahasiswa{
 	        }
 	        displaySampai();
         	jawab();
+			setTarget(null);
 		}
+		active = false;
+	}
+
+	public boolean isActive(){
+		return active;
 	}
 
 	public static void togglePause() {

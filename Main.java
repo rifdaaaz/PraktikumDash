@@ -66,16 +66,16 @@ public class Main {
         //         System.out.println("HELLO");
         //     }
         // });
-
-        setGameOver(qp.isEmpty() || Asisten.getCount() <= 0);
+        setGameOver((!a[0].isActive() && !a[1].isActive()) || Asisten.getCount() <= 0);
+        
         while (!getGameOver()) {
-            setGameOver(qp.isEmpty() || Asisten.getCount() <= 0);
 
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
+            setGameOver((!a[0].isActive() && !a[1].isActive()) || Asisten.getCount() <= 0);
 
         }
 

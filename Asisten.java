@@ -89,7 +89,7 @@ public class Asisten extends Mahasiswa{
 		}
 	}
 
-	public synchronized void jawab(){
+	public void jawab(){
 		// this.interrupt();
 		Asisten.togglePause();
 		String ans;
@@ -104,11 +104,14 @@ public class Asisten extends Mahasiswa{
 				life--;
 				if(life<=0){
 					System.out.println("Asisten " + nama + " pingsan w -_-'");
+					break;
 				}
 			}
 		}while(!ans.equals(q.getAnswer()) && life > 0);
-		if(target.hasQuestion()){
-			qp.add(target);
+		synchronized(qp){
+			if(target.hasQuestion()){
+				qp.add(target);
+			}
 		}
 		Asisten.togglePause();
 	}

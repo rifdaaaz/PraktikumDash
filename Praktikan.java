@@ -6,7 +6,7 @@ public class Praktikan extends Mahasiswa {
   private static int count = 0;
   private char logo = '1';
   private Queue<Question> q = new LinkedList<>();
-
+  private static boolean isPaused = false;
 
   private Praktikan(Builder builder) {
     this.pos = builder.pos;
@@ -67,6 +67,30 @@ public class Praktikan extends Mahasiswa {
 
   public void move(Position p) {
     this.pos = p;
+  }
+
+  public void run() {
+    while(hasQuestion()){
+      Random rand = new Random();
+      int n = rand.nextInt(4)+3;
+      try {
+        Thread.sleep(n*1000);
+      } catch (InterruptedException ex) {
+        Thread.currentThread().interrupt();
+      }
+      while(isPaused){
+        try {
+          Thread.sleep(n*1000);
+        } catch (InterruptedException ex) {
+          Thread.currentThread().interrupt();
+        }
+      }
+      System.out.println(nama + " : KAKK... KAKK..");
+    }
+  }
+
+  public static void togglePause() {
+    isPaused = isPaused ? false : true;
   }
 
 }

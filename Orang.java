@@ -1,4 +1,5 @@
 public class Orang extends Mahasiswa {
+    private static boolean isPaused = false; 
 
     private Orang(Builder builder) {
         this.pos = builder.pos;
@@ -27,6 +28,13 @@ public class Orang extends Mahasiswa {
 
     @Override
     public void run() {
+        while(isPaused){
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+        }
         if (this.nama == "Pak Duktek") {
             System.out.println("Hello Guys!");
         }
@@ -38,4 +46,7 @@ public class Orang extends Mahasiswa {
         }
     }
 
+    public static void togglePause() {
+        isPaused = isPaused ? false : true;
+    }
 }

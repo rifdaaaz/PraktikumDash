@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 import javax.swing.*;
 
 public class Main {
@@ -47,6 +48,11 @@ public class Main {
             }
         }
 
+        //Bikin orang
+        // Orang people = new Orang.Builder().pos(new Position())
+        //                                   .nama("Mahasiswi")
+        //                                   .create();
+
         for (int i = 0; i< a.length; i++) {
             a[i].start();
         }
@@ -54,8 +60,9 @@ public class Main {
         for (int i = 0; i< p.length; i++) {
             p[i].start();
         }
-        // SwingUtilities.invokeLater(new Runnable() {
 
+        // SwingUtilities.invokeLater(new Runnable() {
+            
         //     @Override
         //     public void run() {
         //         View view = new View();
@@ -67,9 +74,13 @@ public class Main {
         //     }
         // });
         setGameOver((!a[0].isActive() && !a[1].isActive()) || Asisten.getCount() <= 0);
-        
+            
         while (!getGameOver()) {
-
+            // Random r = new Random();
+            // int n = r.nextInt(1000);
+            // if (n<100) {
+            //     people.start();
+            // }
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
@@ -77,6 +88,15 @@ public class Main {
             }
             setGameOver((!a[0].isActive() && !a[1].isActive()) || Asisten.getCount() <= 0);
 
+        }
+        if (getGameOver()){
+            try {
+                for (int i = 0; i< p.length; i++) {
+                 p[i].join();
+                }
+            }catch(Exception e) {
+                //do nothing
+            }
         }
 
         if (Asisten.getCount() <= 0) {

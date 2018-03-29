@@ -98,6 +98,7 @@ public class Asisten extends Mahasiswa{
 		// this.interrupt();
 		Asisten.togglePause();
 		Praktikan.togglePause();
+		Orang.togglePause();
 		String ans;
 		QueuePraktikan qp = QueuePraktikan.getInstance();
 		Question q = target.getQuestion();
@@ -117,10 +118,11 @@ public class Asisten extends Mahasiswa{
 		if(target.hasQuestion()){
 			qp.add(target);
 		}
-
+		
 		if(life <= 0){
 			count--;
 		}
+		Orang.togglePause();
 		Praktikan.togglePause();
 		Asisten.togglePause();
 	}

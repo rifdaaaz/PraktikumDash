@@ -149,11 +149,11 @@ public class Asisten extends Mahasiswa{
 			setTarget(qp.poll());
 	        while (!isSampai()) {
 	        	while (isPaused) {
-	        		try {
-			          Thread.sleep(1000);
-			        } catch (InterruptedException ex) {
-			          Thread.currentThread().interrupt();
-			        }
+					try {
+				      Thread.sleep(1000);
+				    } catch (InterruptedException ex) {
+				      Thread.currentThread().interrupt();
+				    }
 	        	}
 	        	move();
 	        	display();

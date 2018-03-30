@@ -1,3 +1,5 @@
+import java.util.random;
+
 public class Orang extends Mahasiswa {
 
     private Orang(Builder builder) {
@@ -27,6 +29,29 @@ public class Orang extends Mahasiswa {
 
     @Override
     public void run() {
+        Random r = new Random();
+        int n = r.nextInt(10) + 10;
+
+        try {
+            Thread.sleep(1000*n);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+
+        while(!isPaused){
+            n = n/2 + 1;
+            try {
+                Thread.sleep(1000*n);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
+        sapa();
+
+    }
+
+    public void sapa(){
         if (this.nama == "Pak Duktek") {
             System.out.println("Hello Guys!");
         }

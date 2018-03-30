@@ -1,6 +1,7 @@
 import java.util.random;
 
 public class Orang extends Mahasiswa {
+    private static boolean isPaused = false; 
 
     private Orang(Builder builder) {
         this.pos = builder.pos;
@@ -42,6 +43,9 @@ public class Orang extends Mahasiswa {
             n = n/2 + 1;
             try {
                 Thread.sleep(1000*n);
+        while(isPaused){
+            try {
+                Thread.sleep(500);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
@@ -63,4 +67,7 @@ public class Orang extends Mahasiswa {
         }
     }
 
+    public static void togglePause() {
+        isPaused = isPaused ? false : true;
+    }
 }

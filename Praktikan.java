@@ -38,6 +38,10 @@ public class Praktikan extends Mahasiswa {
 
   }
 
+  public static boolean getIsPaused() {
+    return isPaused;
+  }
+
   public char getLogo(){
 		return logo;
 	}
@@ -69,7 +73,12 @@ public class Praktikan extends Mahasiswa {
     this.pos = p;
   }
 
+  public void thank(){
+    System.out.println(nama + " : Terimakasih Kak! :)");
+  }
+
   public void run() {
+    System.out.println(nama + " : KAKK... KAKK..");
     while(hasQuestion() && !Main.getGameOver()){
       Random rand = new Random();
       int n = rand.nextInt(4)+3;
@@ -85,7 +94,9 @@ public class Praktikan extends Mahasiswa {
           Thread.currentThread().interrupt();
         }
       }
-      System.out.println(nama + " : KAKK... KAKK..");
+      if(hasQuestion()){
+        System.out.println(nama + " : KAKK... KAKK..");
+      }
     }
   }
 

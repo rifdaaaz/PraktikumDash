@@ -57,6 +57,10 @@ public class Asisten extends Mahasiswa{
 		return count;
 	}
 
+	public static boolean getIsPaused() {
+		return isPaused;
+	}
+
 	public void setTarget(Praktikan target){
 		this.target = target;
 	}
@@ -129,7 +133,7 @@ public class Asisten extends Mahasiswa{
 
 	public synchronized void display(){
 		if(!isSampai()){
-			System.out.println("Asisten " + nama + " berjalan ke " + pos);
+			System.out.println("Asisten " + nama + " berjalan ke " + pos + " menuju " + target.getNama());
 		}
 	}
 

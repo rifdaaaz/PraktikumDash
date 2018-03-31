@@ -12,8 +12,68 @@ public class Main {
     public static boolean getGameOver(){
         return GameOver;
     }
-       
+
+    public static void displayIntro() {
+        System.out.println("\t______          _    _   _ _                     ______          _     ");
+        System.out.println("\t| ___ \\        | |  | | (_) |                    |  _  \\        | |    ");
+        System.out.println("\t| |_/ / __ __ _| | _| |_ _| | ___   _ _ __ ___   | | | |__ _ ___| |__  ");
+        System.out.println("\t|  __/ '__/ _` | |/ / __| | |/ / | | | '_ ` _ \\  | | | / _` / __| '_ \\ ");
+        System.out.println("\t| |  | | | (_| |   <| |_| |   <| |_| | | | | | | | |/ / (_| \\__ \\ | | |");
+        System.out.println("\t\\_|  |_|  \\__,_|_|\\_\\\\__|_|_|\\_\\\\__,_|_| |_| |_| |___/ \\__,_|___/_| |_|\n");
+                                                                         
+        System.out.print("\t\t\t\tInitializing");
+        for (int i = 0; i<4; i++) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            System.out.print(".");
+        }
+        System.out.println();
+    }
+
+    public static void displayPemain(Praktikan[] p,Asisten[] a) {
+
+        System.out.println("Asisten:");
+        for (int i = 0; i< a.length; i++) {
+            System.out.println(a[i].getNama()+": "+a[i].getPos()); 
+        }
+
+        System.out.println();
+
+        System.out.println("Praktikan:");
+        for (int i = 0; i< p.length; i++) {
+            System.out.println(p[i].getNama()+": "+p[i].getPos()); 
+        }
+        
+        System.out.println("\t\t\tPress enter to start..");                                                             
+        try{
+            System.in.read();
+        }catch(Exception e){
+
+        }
+        System.out.println();
+        System.out.println("The game is starting\n");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+    
+    public static void displayEpilog() {
+ System.out.println("  ___   _   __  __ ___    _____   _____ ___ ");
+ System.out.println(" / __| /_\\ |  \\/  | __|  / _ \\ \\ / / __| _ \\");
+ System.out.println("| (_ |/ _ \\| |\\/| | _|  | (_) \\ V /| _||   /");
+ System.out.println(" \\___/_/ \\_\\_|  |_|___|  \\___/ \\_/ |___|_|_\\");
+                                             
+                                             }  
     public static void main(String[] args) {
+        // Random r = new Random();
+        // int n = r.nextInt(5000) + 1000;
+
+        displayIntro();
         Scanner sc = new Scanner(System.in);
         ArrayList<Question> qList = IOHandler.addQuestionFromText(IOHandler.stringToFile("Question.txt"));
         Question[] arrq = new Question[qList.size()];
@@ -26,18 +86,18 @@ public class Main {
                                                         .praktikan3(pList.get(2))
                                                         .praktikan4(pList.get(3)) 
                                                         .questionList(new ArrayList<Question>()).build();
-        Map map = new Map();
+        // Map map = new Map();
         // Position letakSandro = new Position(3, 5);
         Asisten a[] = new Asisten[2];
         a[0] = world.getAsisten1();
         a[1] = world.getAsisten2();
 
         // Position letakAthur = new Position(6, 6);
-        Praktikan[] p = new Praktikan[3];
+        Praktikan[] p = new Praktikan[4];
         p[0] = world.getPraktikan4();
         p[1] = world.getPraktikan1();
         p[2] = world.getPraktikan2();
-        // p[3] = world.getPraktikan3();
+        p[3] = world.getPraktikan3();
         arrq = qList.toArray(arrq);
                 
         QueuePraktikan qp = QueuePraktikan.getInstance();
@@ -49,17 +109,33 @@ public class Main {
         }
 
         //Bikin orang
-        // Orang people = new Orang.Builder().pos(new Position())
-        //                                   .nama("Mahasiswi")
-        //                                   .create();
+        Orang people = new Orang.Builder().pos(new Position())
+                                           .nama("Einstein")
+                                           .create();
+
+        Orang odie = new Orang.Builder().pos(new Position())
+                                           .nama("Odie")
+                                           .create();
+
+        displayPemain(p,a);
+
+        for (int i = 0; i< p.length; i++) {
+            p[i].start();
+        }
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
 
         for (int i = 0; i< a.length; i++) {
             a[i].start();
         }
 
-        for (int i = 0; i< p.length; i++) {
-            p[i].start();
-        }
+
+        people.start();
+        odie.start();
 
         // SwingUtilities.invokeLater(new Runnable() {
             
@@ -76,8 +152,6 @@ public class Main {
         setGameOver((!a[0].isActive() && !a[1].isActive()) || Asisten.getCount() <= 0);
             
         while (!getGameOver()) {
-            // Random r = new Random();
-            // int n = r.nextInt(1000);
             // if (n<100) {
             //     people.start();
             // }
@@ -92,7 +166,7 @@ public class Main {
         if (getGameOver()){
             try {
                 for (int i = 0; i< p.length; i++) {
-                 p[i].join();
+                    p[i].join();
                 }
             }catch(Exception e) {
                 //do nothing
@@ -103,7 +177,17 @@ public class Main {
             System.out.println("Semua asisten pingsan, praktikum kali ini repeating semua");
         } else{
             System.out.println("Praktikum Selesai");
+            for (int i = 0; i< p.length; i++) {
+                p[i].thank();
+            }
+            
         }
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+            displayEpilog();
 
     }
 

@@ -1,11 +1,11 @@
 Kak, siapa nama laki-laki paling ganteng di STI 2016?
 Athur
 Berapa hasil 1 + 1?
-Dua
-Siapa matkul favorit STI 2016?
-MSDS
-Berapa jumlah kaki kerbau?
-4
+2
+Apa matkul favorit STI 2016?
+MSDSTI
+Berapa jumlah sepatu Nabila?
+10
 Siapa asisten OOP favorit STI 2016?
 Robert
 Berapa harga nasi korea?
@@ -21,4 +21,4 @@ HP
 Berapa harga parkir ITB?
 2000
 Siapa nama ketua Arkavidia 4.0?
-Raudy
+Raudi

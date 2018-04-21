@@ -85,8 +85,8 @@ public class View extends JFrame {
  		g.translate(50,50);
 
  		//gambar boardnya
- 		for (int row=0; row<(board.length-1); row++) {
- 			for (int col=0; col<(board[0].length-1); col++) {
+ 		for (int row=0; row<(board.length); row++) {
+ 			for (int col=0; col<(board[0].length); col++) {
  				Color color;
  				switch (board[row][col]) {
  					case '#': color = Color.BLACK; break;

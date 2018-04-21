@@ -154,21 +154,21 @@ public class Main {
         }
 
 
-        people.start();
-        odie.start();
+        //people.start();
+        //odie.start();
 
-        // SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
             
-        //     @Override
-        //     public void run() {
-        //         View view = new View();
-        //         view.setVisible(true);
-        //         view.setView(map.get());
-        //         view.revalidate();
-        //         view.repaint();
-        //         System.out.println("HELLO");
-        //     }
-        // });
+            @Override
+            public void run() {
+                View view = new View();
+                view.setVisible(true);
+                view.setView(maze.get());
+                view.revalidate();
+                view.repaint();
+                System.out.println("HELLO");
+            }
+        });
         setGameOver((!a[0].isActive() && !a[1].isActive()) || Asisten.getCount() <= 0);
             
         while (!getGameOver()) {

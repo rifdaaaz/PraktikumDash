@@ -6,5 +6,5 @@ WorldBuilder$Builder.class
 Praktikan.class
 launch.json
 settings.json
-*.java
-*.java
+*.class
+*.code-workspace

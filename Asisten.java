@@ -9,6 +9,8 @@ public class Asisten extends Mahasiswa{
 	private int life = 3;
 	private char logo = 'A';
 	private static final Scanner s = new Scanner(System.in);
+	private LinkedList<Position> route = null;
+	private BFS router;
 
 /* 	public Asisten(String nama, Position pos){
 		super(nama, pos);
@@ -80,24 +82,6 @@ public class Asisten extends Mahasiswa{
 		return logo;
 	}
 
-	public void move(){
-		Position dest = new Position(target.getPos());
-		if(!isSampai()){
-			if(pos.getX() < dest.getX()){
-				pos.move(1, 0);
-			}else if(pos.getX() > dest.getX()){
-				pos.move(-1, 0);
-			}
-			else{
-				if(pos.getY() < dest.getY()){
-					pos.move(0, 1);
-				}else if(pos.getY() > dest.getY()){
-					pos.move(0, -1);
-				}
-			}
-		}
-	}
-
 	public synchronized void jawab(){
 		// this.interrupt();
 		Asisten.togglePause();
@@ -144,6 +128,13 @@ public class Asisten extends Mahasiswa{
 		}
 	}
 
+	public boolean isActive(){
+		return active;
+	}
+
+	public static void togglePause() {
+		isPaused = isPaused ? false : true;
+	}
 	// ======================
 	// 			RUN
 	// ======================
@@ -179,16 +170,134 @@ public class Asisten extends Mahasiswa{
 	        displaySampai();
         	jawab();
 			setTarget(null);
+			// route = null;
 		}
 		active = false;
 	}
 
-	public boolean isActive(){
-		return active;
+	// ==================================
+	// Move
+	// ==================================
+	public void move(){
+		Position dest = new Position(target.getPos());
+		if(route == null){
+			Peta maze = Peta.getInstance();
+			router = new BFS(maze.get(), pos, target.getPos());
+			route = router.FindRoute();
+		}
+		if(!isSampai()){
+			try{
+				pos = new Position(route.removeFirst());
+			}catch(Exception e){
+				route = null;
+				// System.out.println(nama);
+				// System.out.println(pos);
+				// System.out.println(route == null?"null":"ada");
+				// System.out.println(target.getNama() + " pas error");
+			}
+			// System.out.println(pos);
+		}
 	}
+	// ==================================
+	// BFS resolver
+	// ==================================
+	public class BFS{
+		char[][] maze;
+		Position current;
+		Position target;
 
-	public static void togglePause() {
-		isPaused = isPaused ? false : true;
+		public BFS(char[][] maze, Position current, Position target){
+			this.maze = new char[14][14];
+			for (int i = 0; i<14; i++) {
+				for (int j = 0; j<14; j++) {
+					this.maze[i][j] = maze[i][j];
+				}
+			}
+			this.current = current;
+			this.target = target;
+		}
+
+		private boolean isInMaze(Position p){
+	        return ((p.getX()<14 && p.getX()>=0) && (p.getY()<14 && p.getY()>=0));
+	    }
+
+	    private boolean isClear(Position p, char[][] maze){
+	        return ((maze[p.getX()][p.getY()]!='#') && (maze[p.getX()][p.getY()]!='*'));
+	    }
+
+	    public LinkedList<Position> FindRoute(){
+
+	        Position[][] trace = new Position[14][14]; 
+
+	        LinkedList<Position> list = new LinkedList<Position>();
+
+	        list.add(new Position(current));
+
+	        Position crt;
+	        Position next;
+	        while (!list.isEmpty()) {
+
+	            //posisi sekarang
+	            crt = list.removeFirst();
+
+	            // kalo sudah sama kaya target break
+
+	            //mark yang visited
+	            maze[crt.getX()][crt.getY()]='*';
+
+	            //masukin tetangganya
+	            next = new Position(crt);
+	            next.move(0,1);    //tetangga atas
+	            if (isInMaze(next) && isClear(next,maze)) { 
+	                list.add(next);//yang selanjutnya dicek 
+	                trace[next.getX()][next.getY()] = new Position(crt);//koordinat sebelumnya dimasukin ke koordinat sekarang buat tracing
+	                if (crt.equals(target)) {break; }//kalau udah goal break
+	            }
+
+	            next = new Position(crt);
+	            next.move(1,0);    //tetangga kanan
+	            if (isInMaze(next) && isClear(next,maze)) {
+	                list.add(next);
+	                trace[next.getX()][next.getY()] = new Position(crt);
+	                if (crt.equals(target)) {break; }
+	            }
+
+	            next = new Position(crt);
+	            next.move(-1,0);    //tetangga kiri
+	            if (isInMaze(next) && isClear(next,maze)) {
+	                list.add(next);
+	                trace[next.getX()][next.getY()] = new Position(crt);
+	                if (crt.equals(target)) {break; }
+	            }
+	            
+	            next = new Position(crt);
+	            next.move(0,-1);   //move atas
+	            if (isInMaze(next) && isClear(next,maze)) {
+	                list.add(next);
+	                trace[next.getX()][next.getY()] = new Position(crt);
+	                if (crt.equals(target)) {break; }
+	            }
+
+	        }
+
+	        // Tracing path dari belakang
+	        LinkedList<Position> trail = new LinkedList<Position>();
+	        int i = target.getX();
+	        int j = target.getY();
+	        trail.addFirst(target);
+	        while(trace[i][j] != null){
+	            Position temp = new Position(trace[i][j]);
+	            trail.addFirst(temp);
+	            i = temp.getX();
+	            j = temp.getY();
+	        }
+
+
+	        // for (Position pos : trail) {
+	        //     System.out.print(pos + " ");
+	        // }
+
+	        return trail;
+	    }
 	}
-
 }

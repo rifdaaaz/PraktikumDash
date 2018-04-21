@@ -1,9 +1,8 @@
-import java.util.random;
+import java.util.Random;
 
 public class Orang extends Mahasiswa {
 
     private static boolean isPaused = false; 
-    private static volatile boolean isPaused = false;
 
 
     private Orang(Builder builder) {
@@ -58,6 +57,7 @@ public class Orang extends Mahasiswa {
     public void sapa(){
         if (this.nama.equals("Pak Duktek")) {
             System.out.println("Hello Guys!");
+        }
         if (this.nama == "Einstein") {
             
             System.out.println();

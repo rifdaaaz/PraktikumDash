@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Orang extends Mahasiswa {
-    private static boolean isPaused = false;
+    private static volatile boolean isPaused = false;
 
     private Orang(Builder builder) {
         this.pos = builder.pos;
@@ -64,24 +64,24 @@ public class Orang extends Mahasiswa {
         if (this.nama == "Einstein") {
             
             System.out.println();
-            System.out.println("                          Einstein Datang");
+            System.out.println("                          Einstein Datang: \"Bagaimana Praktikumnya? EZ kan?\" ");
+            // System.out.println();
+            // System.out.println("                                       ,---,_");
+            // System.out.println("                           _>   `'-.  .--'/");
+            // System.out.println("                       .--'` ._      `/   <_");
+            // System.out.println("                       >,-' ._'.. ..__ . ' '-.");
+            // System.out.println("                   .-'   .'`         `'.     '.");
+            // System.out.println("                       >   / >`-.     .-'< \\ , '._\\");
+            // System.out.println("                   /    ; '-._>   <_.-' ;  '._>");
+            // System.out.println("                   `>  ,/  /___\\ /___\\  \\_  /");
+            // System.out.println("                   `.-|(|  \\o_/  \\o_/   |)|`");
+            // System.out.println("                       \\;        \\      ;/");
+            // System.out.println("                           \\  .-,   )-.  /");
+            // System.out.println("                           /`  .'-'.  `\\");
+            // System.out.println("                          ;_.-`.___.'-.;");
             System.out.println();
-            System.out.println("                                       ,---,_");
-            System.out.println("                           _>   `'-.  .--'/");
-            System.out.println("                       .--'` ._      `/   <_");
-            System.out.println("                       >,-' ._'.. ..__ . ' '-.");
-            System.out.println("                   .-'   .'`         `'.     '.");
-            System.out.println("                       >   / >`-.     .-'< \\ , '._\\");
-            System.out.println("                   /    ; '-._>   <_.-' ;  '._>");
-            System.out.println("                   `>  ,/  /___\\ /___\\  \\_  /");
-            System.out.println("                   `.-|(|  \\o_/  \\o_/   |)|`");
-            System.out.println("                       \\;        \\      ;/");
-            System.out.println("                           \\  .-,   )-.  /");
-            System.out.println("                           /`  .'-'.  `\\");
-            System.out.println("                          ;_.-`.___.'-.;");
-            System.out.println();
-            System.out.println("                  Bagaimana Praktikumnya? EZ kan?");
-            System.out.println();
+            // System.out.println("                  \"Bagaimana Praktikumnya? EZ kan?\"");
+            // System.out.println();
         }
         else if (this.nama == "Odie") {
             // int chance = r.nextInt(2);

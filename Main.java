@@ -63,10 +63,10 @@ public class Main {
     }
     
     public static void displayEpilog() {
- System.out.println("  ___   _   __  __ ___    _____   _____ ___ ");
- System.out.println(" / __| /_\\ |  \\/  | __|  / _ \\ \\ / / __| _ \\");
- System.out.println("| (_ |/ _ \\| |\\/| | _|  | (_) \\ V /| _||   /");
- System.out.println(" \\___/_/ \\_\\_|  |_|___|  \\___/ \\_/ |___|_|_\\");
+ System.out.println("\n\t\t  ___   _   __  __ ___    _____   _____ ___ ");
+ System.out.println("\t\t / __| /_\\ |  \\/  | __|  / _ \\ \\ / / __| _ \\");
+ System.out.println("\t\t| (_ |/ _ \\| |\\/| | _|  | (_) \\ V /| _||   /");
+ System.out.println("\t\t \\___/_/ \\_\\_|  |_|___|  \\___/ \\_/ |___|_|_\\\n");
                                              
                                              }  
     public static void main(String[] args) {
@@ -134,8 +134,8 @@ public class Main {
         }
 
 
-        people.start();
-        odie.start();
+    //    people.start();
+    //    odie.start();
 
         // SwingUtilities.invokeLater(new Runnable() {
             
@@ -176,7 +176,7 @@ public class Main {
         if (Asisten.getCount() <= 0) {
             System.out.println("Semua asisten pingsan, praktikum kali ini repeating semua");
         } else{
-            System.out.println("Praktikum Selesai");
+            System.out.println("\n--Praktikum Selesai--\n");
             for (int i = 0; i< p.length; i++) {
                 p[i].thank();
             }

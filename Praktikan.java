@@ -6,7 +6,7 @@ public class Praktikan extends Mahasiswa {
   private static int count = 0;
   private char logo = '1';
   private Queue<Question> q = new LinkedList<>();
-  private static boolean isPaused = false;
+  private static volatile boolean isPaused = false;
 
   private Praktikan(Builder builder) {
     this.pos = builder.pos;

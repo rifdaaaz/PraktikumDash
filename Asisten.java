@@ -2,7 +2,7 @@
 import java.util.*;
 
 public class Asisten extends Mahasiswa{
-	private static boolean isPaused = false;
+	private static volatile boolean isPaused = false;
 	private static int count = 0;
 	private boolean active = true;
 	private Praktikan target;

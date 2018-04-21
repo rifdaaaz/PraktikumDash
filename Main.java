@@ -63,12 +63,12 @@ public class Main {
     }
     
     public static void displayEpilog() {
- System.out.println("  ___   _   __  __ ___    _____   _____ ___ ");
- System.out.println(" / __| /_\\ |  \\/  | __|  / _ \\ \\ / / __| _ \\");
- System.out.println("| (_ |/ _ \\| |\\/| | _|  | (_) \\ V /| _||   /");
- System.out.println(" \\___/_/ \\_\\_|  |_|___|  \\___/ \\_/ |___|_|_\\");
-                                             
-                                             }  
+        System.out.println("  ___   _   __  __ ___    _____   _____ ___ ");
+        System.out.println(" / __| /_\\ |  \\/  | __|  / _ \\ \\ / / __| _ \\");
+        System.out.println("| (_ |/ _ \\| |\\/| | _|  | (_) \\ V /| _||   /");
+        System.out.println(" \\___/_/ \\_\\_|  |_|___|  \\___/ \\_/ |___|_|_\\");
+    }
+      
     public static void main(String[] args) {
         // Random r = new Random();
         // int n = r.nextInt(5000) + 1000;

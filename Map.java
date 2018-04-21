@@ -6,14 +6,8 @@ public class Map {
     public Map() {
         for (int i = 0; i < 14; i ++) {
             this.map[i][0] = '#';
-        } 
-        for (int i = 0; i < 14; i ++) {
             this.map[0][i] = '#';
-        }
-        for (int i = 0; i < 14; i ++) {
             this.map[13][i] = '#';
-        }
-        for (int i = 0; i < 14; i ++) {
             this.map[i][13] = '#';
         } 
         for (int i = 1; i < 13; i++) {

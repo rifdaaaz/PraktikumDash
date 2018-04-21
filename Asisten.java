@@ -19,6 +19,13 @@ public class Asisten extends Mahasiswa{
 		count++;
 		logo +=count-1; 
 	} */
+	public Asisten(Asisten a){
+		this.pos = a.pos;
+		this.nama = a.nama;
+		this.life = a.life;
+		this.logo = a.logo;
+	}
+	
 
 	//konstruktor pake builder
 	private Asisten(Builder builder){

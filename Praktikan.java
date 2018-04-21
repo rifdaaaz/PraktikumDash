@@ -8,6 +8,13 @@ public class Praktikan extends Mahasiswa {
   private Queue<Question> q = new LinkedList<>();
   private static boolean isPaused = false;
 
+
+  public Praktikan(Praktikan p) {
+    this.pos = p.pos;
+    this.nama = p.nama;
+    this.logo = p.logo;
+  }
+
   private Praktikan(Builder builder) {
     this.pos = builder.pos;
     this.nama = builder.nama;

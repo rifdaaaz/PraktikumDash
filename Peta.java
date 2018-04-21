@@ -33,10 +33,16 @@ public class Peta {
         }
     }
 
-    public void printPeta() {
+    public void printPeta(Praktikan p, Asisten a) {
         for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 14; j ++) {
-                System.out.print(peta[i][j]);
+                if (a.getPos().equals(new Position(i,j))){
+                    System.out.print('A');
+                }else if (p.getPos().equals(new Position(i,j))){
+                    System.out.print('P');
+                }else{
+                    System.out.print(peta[i][j]);
+                }
             }
             System.out.println();
         }

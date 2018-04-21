@@ -16,7 +16,7 @@ public class IOHandler {
             System.err.println(e.getMessage());
         }
         String line1,line2; //read from txt
-        ArrayList<Question> arrQuestions = new ArrayList(12);
+        ArrayList<Question> arrQuestions = new ArrayList<Question>(12);
         int i = 0; //index 
         while(inFile.hasNext()){
             line1 = inFile.nextLine();
@@ -35,7 +35,7 @@ public class IOHandler {
             System.err.println(e.getMessage());
         }
         String line1,line2,line3; //read from txt
-        ArrayList<Praktikan> arrPraktikan = new ArrayList(6);
+        ArrayList<Praktikan> arrPraktikan = new ArrayList<Praktikan>(6);
         int i = 0; //index 
         while(inFile.hasNext()){
             line1 = inFile.nextLine();
@@ -55,7 +55,7 @@ public class IOHandler {
             System.err.println(e.getMessage());
         }
         String line1,line2,line3; //read from txt
-        ArrayList<Asisten> arrAsisten = new ArrayList(4);
+        ArrayList<Asisten> arrAsisten = new ArrayList<Asisten>(4);
         int i = 0; //index 
         while(inFile.hasNext()){
             line1 = inFile.nextLine();

@@ -2,7 +2,7 @@
 import java.util.*;
 
 public class Asisten extends Mahasiswa{
-	private static boolean isPaused = false;
+	public static boolean isPaused = false;
 	private static int count = 0;
 	private boolean active = true;
 	private Praktikan target;
@@ -25,7 +25,7 @@ public class Asisten extends Mahasiswa{
 		this.life = a.life;
 		this.logo = a.logo;
 	}
-	
+
 
 	//konstruktor pake builder
 	private Asisten(Builder builder){

@@ -175,6 +175,13 @@ public class Main {
             // if (n<100) {
             //     people.start();
             // }
+            while (Asisten.isPaused) {
+                try {
+                  Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                  Thread.currentThread().interrupt();
+                }
+            }
             maze.printPeta(p,a);
             try {
                 Thread.sleep(500);

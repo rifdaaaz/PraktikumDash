@@ -85,6 +85,7 @@ public class Praktikan extends Mahasiswa {
   }
 
   public void run() {
+    Peta p = Peta.getInstance();
     System.out.println(nama + " : KAKK... KAKK..");
     while(hasQuestion() && !Main.getGameOver()){
       Random rand = new Random();
@@ -101,6 +102,7 @@ public class Praktikan extends Mahasiswa {
           Thread.currentThread().interrupt();
         }
       }
+      p.placePraktikan(this);
       if(hasQuestion()){
         System.out.println(nama + " : KAKK... KAKK..");
       }

@@ -8,7 +8,6 @@ public class Asisten extends Mahasiswa{
 	private Praktikan target;
 	private int life = 3;
 	private char logo = 'A';
-	private static final Scanner s = new Scanner(System.in);
 	private LinkedList<Position> route = null;
 	private BFS router;
 
@@ -42,7 +41,6 @@ public class Asisten extends Mahasiswa{
 
 
 	public static class Builder {
-		private Praktikan target;
 		private int life = 2;
 		private char logo = 'A';
 		private String nama;
@@ -100,7 +98,16 @@ public class Asisten extends Mahasiswa{
 		do{
 			System.out.println("Pertanyaan : " + q.getQuestion());
 			System.out.print("Jawabanmu : ");
-			ans = s.next();
+			ans = View.getInput();
+			View.toggleChange();
+			while(ans == null||View.getAnswerStatus()){
+				try {
+					Thread.sleep(500);
+				} catch (Exception e) {
+					Thread.currentThread().interrupt();
+				}
+				ans = View.getInput();
+			}
 			if(!ans.equals(q.getAnswer())){
 				System.out.println("Jawabanmu masih salah :(");
 				life--;
@@ -186,7 +193,8 @@ public class Asisten extends Mahasiswa{
 	// Move
 	// ==================================
 	public void move(){
-		Position dest = new Position(target.getPos());
+		Peta p = Peta.getInstance();
+		p.setTitik(pos);
 		if(route == null){
 			Peta maze = Peta.getInstance();
 			router = new BFS(maze.get(), pos, target.getPos());
@@ -195,6 +203,7 @@ public class Asisten extends Mahasiswa{
 		if(!isSampai()){
 			try{
 				pos = new Position(route.removeFirst());
+				p.placeAsisten(this);
 			}catch(Exception e){
 				route = null;
 				// System.out.println(nama);

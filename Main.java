@@ -136,13 +136,12 @@ public class Main {
             {'#','#','#','#','#','#','#','#','#','#','#','#','#','#'}
         };
         maze.setPeta(temp);
-        
+        maze.printPeta(p,a);
         displayPemain(p,a);
-
-  
 
         for (int i = 0; i< p.length; i++) {
             p[i].start();
+            maze.placePraktikan(p[i]);
         }
 
         try {
@@ -159,6 +158,20 @@ public class Main {
         //people.start();
         //odie.start();
 
+        SwingUtilities.invokeLater(new Runnable() {
+            
+            @Override
+            public void run() {
+                View view = new View();
+                view.setVisible(true);
+                view.setView(maze.get());
+                view.revalidate();
+                view.repaint();
+                // System.out.println("HELLO");
+                Timer timer = new Timer(500,view);
+                timer.start();
+            }
+        });
         setGameOver((!a[0].isActive() && !a[1].isActive()) || Asisten.getCount() <= 0);
             
         while (!getGameOver()) {
@@ -172,21 +185,7 @@ public class Main {
                   Thread.currentThread().interrupt();
                 }
             }
-            SwingUtilities.invokeLater(new Runnable() {
-            
-                @Override
-                public void run() {
-                    View view = new View();
-                    view.setVisible(true);
-                        view.setView(maze.printPeta(p,a));
-                        System.out.println("repaint?????");
-                       // view.removeAll();
-                        view.revalidate();
-                        view.repaint();
-                        System.out.println("HELLO");
-                     
-                }
-            });     
+            maze.printPeta();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {

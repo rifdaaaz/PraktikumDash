@@ -166,7 +166,7 @@ public class Main {
                 view.setView(maze.get());
                 view.revalidate();
                 view.repaint();
-                System.out.println("HELLO");
+                // System.out.println("HELLO");
             }
         });
         setGameOver((!a[0].isActive() && !a[1].isActive()) || Asisten.getCount() <= 0);

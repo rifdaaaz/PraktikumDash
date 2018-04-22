@@ -81,7 +81,7 @@ public class View extends JFrame {
 
  	@Override
  	public void paint(Graphics g) {
- 		super.paint(g);
+ 		// super.paint(g);
  		g.translate(50,50);
 
  		//gambar boardnya

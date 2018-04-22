@@ -98,9 +98,9 @@ public class View extends JFrame implements ActionListener {
 			jt.setLocation(40,500);
 			jt.setSize(200,20);
 
-			jp.add(jb);
-			jt.setLocation(40,500);
-			jt.setSize(200,20);
+			// jp.add(button);
+			// jt.setLocation(40,500);
+			// jt.setSize(200,20);
 
 	 		jb.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent ae) {

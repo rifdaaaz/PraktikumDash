@@ -10,6 +10,8 @@ public class Asisten extends Mahasiswa{
 	private char logo = 'A';
 	private LinkedList<Position> route = null;
 	private BFS router;
+	private int index;
+  	public int getIndex(){return index;}
 
 /* 	public Asisten(String nama, Position pos){
 		super(nama, pos);
@@ -35,6 +37,7 @@ public class Asisten extends Mahasiswa{
 		this.target = null;
 		this.active = true;
 		this.life = 2;
+		index = count;
 		count++;
 		this.logo += count - 1;
 	}
@@ -97,18 +100,7 @@ public class Asisten extends Mahasiswa{
 		QueuePraktikan qp = QueuePraktikan.getInstance();
 		Question q = target.getQuestion();
 		do{
-			question = q.getQuestion();
-			View.setQuestion(question);
-			question = View.getQuestion();
-			System.out.println("Pertanyaan : " + question);
-			while (question == null){
-				try {
-					Thread.sleep(500);
-				} catch (Exception e) {
-					Thread.currentThread().interrupt();
-				}
-				View.setQuestion(question);
-			}
+			View.setQuotationPraktikan(target.getNama() +" : " + q.getQuestion(), target.getIndex());
 			System.out.print("Jawabanmu : ");
 			ans = View.getInput();
 			View.toggleChange();
@@ -121,14 +113,21 @@ public class Asisten extends Mahasiswa{
 				ans = View.getInput();
 			}
 			if(!ans.equals(q.getAnswer())){
-				System.out.println("Jawabanmu masih salah :(");
+				View.setQuotationPraktikan(target.getNama() + "\t: Masih salah Kak.. :(",target.getIndex());
 				life--;
 				if(life<=0){
-					System.out.println("Asisten " + nama + " pingsan dan walk out dari laboratorium");
+					View.setQuotationAsisten(nama + "\t: pingsan dan walk out dari laboratorium", index);
 				}
 			}
+
 		}while(!ans.equals(q.getAnswer()) && life > 0);
 		
+		if(ans.equals(q.getAnswer())){
+			View.setQuotationPraktikan(target.getNama() + "\t: Makasih kakk ^_^",target.getIndex());
+		}else{
+			View.setQuotationPraktikan(target.getNama() + "\t: No hope T_T",target.getIndex());
+		}
+
 		if(target.hasQuestion()){
 			qp.add(target);
 		}
@@ -143,13 +142,13 @@ public class Asisten extends Mahasiswa{
 
 	public synchronized void display(){
 		if(!isSampai()){
-			System.out.println("Asisten " + nama + " berjalan ke " + pos + " menuju " + target.getNama());
+			View.setQuotationAsisten( nama + "\t: berjalan ke " + pos + " menuju " + target.getNama(), index);
 		}
 	}
 
 	public void displaySampai(){
 		if(isSampai()){
-			System.out.println("Asisten " + nama + " sampai ke Praktikan " + target.getNama());
+			View.setQuotationAsisten( nama + "\t: sampai ke Praktikan " + target.getNama(), index);
 			//jawab();
 		}
 	}
@@ -218,7 +217,7 @@ public class Asisten extends Mahasiswa{
 				p.placeAsisten(this);
 			}catch(Exception e){
 				route = null;
-				// System.out.println(nama);
+				// View.setQuotation(nama);
 				// System.out.println(pos);
 				// System.out.println(route == null?"null":"ada");
 				// System.out.println(target.getNama() + " pas error");

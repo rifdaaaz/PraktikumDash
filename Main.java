@@ -140,7 +140,7 @@ public class Main {
             {'#','#','#','#','#','#','#','#','#','#','#','#','#','#'}
         };
         maze.setPeta(temp);
-        maze.printPeta(p,a);
+        // maze.printPeta(p,a);
         displayPemain(p,a);
 
         SwingUtilities.invokeLater(new Runnable() {
@@ -160,63 +160,6 @@ public class Main {
                 // }
             }
         });
-        // if (View.state == State.GAME) {
-        //     for (int i = 0; i< p.length; i++) {
-        //         p[i].start();
-        //         maze.placePraktikan(p[i]);
-        //     }
-
-        //     try {
-        //         Thread.sleep(500);
-        //     } catch (InterruptedException ex) {
-        //         Thread.currentThread().interrupt();
-        //     }
-
-        //     for (int i = 0; i< a.length; i++) {
-        //         a[i].start();
-        //     }
-        // }
-        // if (View.getStatesStatus()){
-            for (int i = 0; i< p.length; i++) {
-                p[i].start();
-                maze.placePraktikan(p[i]);
-            }
-    
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-    
-            for (int i = 0; i< a.length; i++) {
-                a[i].start();
-            }
-        // }
-        // if (View.state == State.MENU){
-        //     System.out.println("ini menu");
-        // }else{
-        //     System.out.println("lagi main");
-        // }
-
-
-
-        //people.start();
-        //odie.start();
-
-        // SwingUtilities.invokeLater(new Runnable() {   
-        //     @Override
-        //     public void run() {
-        //         View view = new View();
-        //         view.setVisible(true);
-        //         view.setView(maze.get());
-        //         view.revalidate();
-        //         view.repaint();
-        //         // System.out.println("HELLO");
-        //         Timer timer = new Timer(500,view);
-        //         timer.start();
-        //     }
-        // });
-        
         setGameOver((!a[0].isActive() && !a[1].isActive()) || Asisten.getCount() <= 0);
             
         while (!getGameOver()) {
@@ -230,7 +173,7 @@ public class Main {
                   Thread.currentThread().interrupt();
                 }
             }
-            maze.printPeta();
+            // maze.printPeta();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {

@@ -93,10 +93,22 @@ public class Asisten extends Mahasiswa{
 		Praktikan.togglePause();
 		Orang.togglePause();
 		String ans;
+		String question;
 		QueuePraktikan qp = QueuePraktikan.getInstance();
 		Question q = target.getQuestion();
 		do{
-			System.out.println("Pertanyaan : " + q.getQuestion());
+			question = q.getQuestion();
+			View.setQuestion(question);
+			question = View.getQuestion();
+			System.out.println("Pertanyaan : " + question);
+			while (question == null){
+				try {
+					Thread.sleep(500);
+				} catch (Exception e) {
+					Thread.currentThread().interrupt();
+				}
+				View.setQuestion(question);
+			}
 			System.out.print("Jawabanmu : ");
 			ans = View.getInput();
 			View.toggleChange();

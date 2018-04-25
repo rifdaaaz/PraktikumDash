@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
+import java.awt.Graphics;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 public class Main {
@@ -139,25 +143,6 @@ public class Main {
         maze.printPeta(p,a);
         displayPemain(p,a);
 
-        for (int i = 0; i< p.length; i++) {
-            p[i].start();
-            maze.placePraktikan(p[i]);
-        }
-
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-
-        for (int i = 0; i< a.length; i++) {
-            a[i].start();
-        }
-
-
-        //people.start();
-        //odie.start();
-
         SwingUtilities.invokeLater(new Runnable() {
             
             @Override
@@ -168,10 +153,70 @@ public class Main {
                 view.revalidate();
                 view.repaint();
                 // System.out.println("HELLO");
-                Timer timer = new Timer(500,view);
+                Timer timer = new Timer(1000,view);
                 timer.start();
+                // if (View.state == State.GAME) {
+                //     return;
+                // }
             }
         });
+        // if (View.state == State.GAME) {
+        //     for (int i = 0; i< p.length; i++) {
+        //         p[i].start();
+        //         maze.placePraktikan(p[i]);
+        //     }
+
+        //     try {
+        //         Thread.sleep(500);
+        //     } catch (InterruptedException ex) {
+        //         Thread.currentThread().interrupt();
+        //     }
+
+        //     for (int i = 0; i< a.length; i++) {
+        //         a[i].start();
+        //     }
+        // }
+        // if (View.getStatesStatus()){
+            for (int i = 0; i< p.length; i++) {
+                p[i].start();
+                maze.placePraktikan(p[i]);
+            }
+    
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+    
+            for (int i = 0; i< a.length; i++) {
+                a[i].start();
+            }
+        // }
+        // if (View.state == State.MENU){
+        //     System.out.println("ini menu");
+        // }else{
+        //     System.out.println("lagi main");
+        // }
+
+
+
+        //people.start();
+        //odie.start();
+
+        // SwingUtilities.invokeLater(new Runnable() {   
+        //     @Override
+        //     public void run() {
+        //         View view = new View();
+        //         view.setVisible(true);
+        //         view.setView(maze.get());
+        //         view.revalidate();
+        //         view.repaint();
+        //         // System.out.println("HELLO");
+        //         Timer timer = new Timer(500,view);
+        //         timer.start();
+        //     }
+        // });
+        
         setGameOver((!a[0].isActive() && !a[1].isActive()) || Asisten.getCount() <= 0);
             
         while (!getGameOver()) {
@@ -218,9 +263,7 @@ public class Main {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-            displayEpilog();
+        displayEpilog();
 
     }
-
-
 }

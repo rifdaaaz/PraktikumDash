@@ -21,9 +21,17 @@ import javax.imageio.ImageIO;
 
 public class View extends JFrame implements ActionListener {
 	JPanel jp = new JPanel();
-	JLabel jl = new JLabel("ini pertanyaannyaaaa");
+	// JLabel jprak = new JLabel("Praktikan");
+	// JLabel jasis = new JLabel("Asisten");
+	JLabel jlp[] = new JLabel[4];
+	JLabel jla[] = new JLabel[2];
 	JTextField jt = new JTextField("Enter your answer here...",30);
 	JButton jb = new JButton("Enter");
+	private JPanel btn_close;
+	private JLabel close = new JLabel("X");
+
+	private static String[] quotationPraktikan = new String[4];
+	private static String[] quotationAsisten = new String[2];
 	public static String inputtoShare;
 	public static boolean isChanged = false;
 	//ImageIcon icon = new ImageIcon("0.jpg","kak raudy");
@@ -36,22 +44,37 @@ public class View extends JFrame implements ActionListener {
 	// 9 = target node
 
 	//start at 1,1
+
+	private void closeMouseClicked(java.awt.event.MouseEvent evt) {                                   
+        System.exit(0);        // TODO add your handling code here:
+    }   
+
+	private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {                                       
+        System.exit(0);        // TODO add your handling code here:
+    }  
+
+	public static void setQuotationPraktikan(String q, int i){
+		quotationPraktikan[i] = q;
+	}
+	public static void setQuotationAsisten(String q, int i){
+		quotationAsisten[i] = q;
+	}
+
 	private char[][] board = 
-		{ 	{ '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' },
-			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '.', '.', '.', '#', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#' },
-			{ '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' },
-			{ '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }
+		{ 	{ '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
+			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '.', '.', '.', '#', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+			{ '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
 		};
 
 	public static void toggleChange() {
@@ -68,15 +91,25 @@ public class View extends JFrame implements ActionListener {
 
 	public View() {
 	 		setTitle("Praktikum Dash!");
-	 		setSize(520,600);
+	 		setSize(900,600);
 	 		setLocationRelativeTo(null);
 	 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	 		setUndecorated(true);
+			setResizable(false);
+			//jp.setBackground(new java.awt.Color(51, 51, 51));
+
 			
 	 		//jt.setLocationRelativeTo()
 
-	 		//======= Kasih Pertanyaan =====================
-
-	 		jl.setText("Siapa laki-laki paling ganteng di STI 2016?");
+	 		//======= Label Praktikan =====================
+	 		for (int i = 0; i<4; i++) {
+		 		quotationPraktikan[i] = "";
+		 		jlp[i] = new JLabel(quotationPraktikan[i]);
+	 		}
+	 		for (int i = 0; i<2; i++) {
+		 		quotationAsisten[i] = "";
+		 		jla[i] = new JLabel(quotationAsisten[i]);
+	 		}
 
 	 		//======= BUAT INPUTAN DR KEYBOARD =============
 
@@ -85,17 +118,25 @@ public class View extends JFrame implements ActionListener {
 
 			// Lokasi Button
 			jp.add(jb);
-	 		jb.setBounds(250, 500, 100, 20);
+	 		jb.setBounds(720, 400, 100, 20);
 
 
-	 		// Set pertanyaan
-	 		jp.add(jl);
-			jl.setLocation(40,430);
-			jl.setSize(500,80);
+	 		// Set label praktikan
+	 		for (int i = 0; i<4; i++) {
+		 		jp.add(jlp[i]);
+				jlp[i].setLocation(500,150+15*i);
+				jlp[i].setSize(500,15);
+	 		}
+	 		// Set label asisten
+	 		for (int i = 0; i<2; i++) {
+		 		jp.add(jla[i]);
+				jla[i].setLocation(500,80+15*i);
+				jla[i].setSize(500,15);
+	 		}
 
 			// Set jawaban
 			jp.add(jt);
-			jt.setLocation(40,500);
+			jt.setLocation(500,400);
 			jt.setSize(200,20);
 
 			// jp.add(button);
@@ -111,6 +152,8 @@ public class View extends JFrame implements ActionListener {
 				}
 			});
 	 		//jp.setBackground(Color.BLACK);
+
+
 	 		add(jp);
 
 
@@ -124,6 +167,12 @@ public class View extends JFrame implements ActionListener {
 	 public void actionPerformed(ActionEvent arg0) {
 		Peta p = Peta.getInstance();
 		setView(p.get());
+ 		for (int i = 0; i<4; i++) {
+	 		jlp[i].setText(quotationPraktikan[i]);
+ 		}
+ 		for (int i = 0; i<2; i++) {
+	 		jla[i].setText(quotationAsisten[i]);
+ 		}
 		repaint();
 	 }
  	@Override
@@ -138,7 +187,6 @@ public class View extends JFrame implements ActionListener {
  				switch (board[row][col]) {
  					case '#': color = Color.BLACK; break;
  					case '.': color = Color.WHITE; break;
- 					case '1': color = Color.RED; break;
  					case 'A': color = Color.GREEN; break;
  					case 'B': color = Color.BLUE; break;
  					default : color = Color.RED;
@@ -153,15 +201,15 @@ public class View extends JFrame implements ActionListener {
  	}
 
  	
-	//  public static void main (String[] args){
-	//  	SwingUtilities.invokeLater(new Runnable() {
+	 // public static void main (String[] args){
+	 // 	SwingUtilities.invokeLater(new Runnable() {
 
-	//  		@Override
-	//  		public void run() {
-	//  			View view = new View();
-	//  			view.setVisible(true);
-	//  			view.repaint();
-	//  		}
-	//  	});
-	//  } 
+	 // 		@Override
+	 // 		public void run() {
+	 // 			View view = new View();
+	 // 			view.setVisible(true);
+	 // 			view.repaint();
+	 // 		}
+	 // 	});
+	 // } 
 }

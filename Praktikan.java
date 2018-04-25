@@ -7,7 +7,8 @@ public class Praktikan extends Mahasiswa {
   private char logo = '1';
   private Queue<Question> q = new LinkedList<>();
   private static boolean isPaused = false;
-
+  private int index;
+  public int getIndex(){return index;}
 
   public Praktikan(Praktikan p) {
     this.pos = p.pos;
@@ -18,6 +19,7 @@ public class Praktikan extends Mahasiswa {
   private Praktikan(Builder builder) {
     this.pos = builder.pos;
     this.nama = builder.nama;
+    index = count;
     count++;
     logo += count - 1;
   }
@@ -81,12 +83,12 @@ public class Praktikan extends Mahasiswa {
   }
 
   public void thank(){
-    System.out.println(nama + " : Terimakasih Kak! :)");
+    View.setQuotationPraktikan(nama + "\t: Terimakasih Kak! :)",index);
   }
 
   public void run() {
     Peta p = Peta.getInstance();
-    System.out.println(nama + " : KAKK... KAKK..");
+    View.setQuotationPraktikan(nama + "\t: KAKK... KAKK..",index);
     while(hasQuestion() && !Main.getGameOver()){
       Random rand = new Random();
       int n = rand.nextInt(4)+3;
@@ -104,7 +106,7 @@ public class Praktikan extends Mahasiswa {
       }
       p.placePraktikan(this);
       if(hasQuestion()){
-        System.out.println(nama + " : KAKK... KAKK..");
+        View.setQuotationPraktikan(nama + "\t: KAKK... KAKK..",index);
       }
     }
   }

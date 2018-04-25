@@ -136,7 +136,7 @@ public class Main {
             {'#','#','#','#','#','#','#','#','#','#','#','#','#','#'}
         };
         maze.setPeta(temp);
-        maze.printPeta(p,a);
+        // maze.printPeta(p,a);
         displayPemain(p,a);
 
         for (int i = 0; i< p.length; i++) {
@@ -168,10 +168,11 @@ public class Main {
                 view.revalidate();
                 view.repaint();
                 // System.out.println("HELLO");
-                Timer timer = new Timer(500,view);
+                Timer timer = new Timer(1000,view);
                 timer.start();
             }
         });
+
         setGameOver((!a[0].isActive() && !a[1].isActive()) || Asisten.getCount() <= 0);
             
         while (!getGameOver()) {
@@ -185,7 +186,7 @@ public class Main {
                   Thread.currentThread().interrupt();
                 }
             }
-            maze.printPeta();
+            // maze.printPeta();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {

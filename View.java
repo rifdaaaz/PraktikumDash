@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -21,14 +22,16 @@ import javax.imageio.ImageIO;
 
 public class View extends JFrame implements ActionListener {
 	JPanel jp = new JPanel();
-	// JLabel jprak = new JLabel("Praktikan");
-	// JLabel jasis = new JLabel("Asisten");
+	JLabel jprak = new JLabel("Praktikan");
+	JLabel jasis = new JLabel("Asisten");
 	JLabel jlp[] = new JLabel[4];
 	JLabel jla[] = new JLabel[2];
 	JTextField jt = new JTextField("Enter your answer here...",30);
 	JButton jb = new JButton("Enter");
 	private JPanel btn_close;
 	private JLabel close = new JLabel("X");
+	Font font = new Font("Lato", Font.ITALIC,14);
+	Font fontb = new Font("Lato", Font.BOLD,16);
 
 	private static String[] quotationPraktikan = new String[4];
 	private static String[] quotationAsisten = new String[2];
@@ -126,18 +129,31 @@ public class View extends JFrame implements ActionListener {
 		 		jp.add(jlp[i]);
 				jlp[i].setLocation(500,150+15*i);
 				jlp[i].setSize(500,15);
+				jlp[i].setFont(font);
 	 		}
 	 		// Set label asisten
 	 		for (int i = 0; i<2; i++) {
 		 		jp.add(jla[i]);
 				jla[i].setLocation(500,80+15*i);
 				jla[i].setSize(500,15);
+				jla[i].setFont(font);
 	 		}
 
 			// Set jawaban
 			jp.add(jt);
 			jt.setLocation(500,400);
 			jt.setSize(200,20);
+
+			jp.add(jprak);
+			jprak.setLocation(500,130);
+			jprak.setSize(500,15);
+			jprak.setFont(fontb);
+
+			jp.add(jasis);
+			jasis.setFont(fontb);
+			jasis.setLocation(500,60);
+			jasis.setSize(500,15);
+
 
 			// jp.add(button);
 			// jt.setLocation(40,500);
